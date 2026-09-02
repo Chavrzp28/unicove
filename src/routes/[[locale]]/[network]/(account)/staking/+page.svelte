@@ -4,7 +4,7 @@
 	import { ChartLine } from '@lucide/svelte';
 
 	import { MultiCard } from '$lib/components/layout';
-	import { Button, Card, Stack, Table, TD, TR } from 'unicove-components';
+	import { Button, Card, Stack, Table, TD, TR } from '@wharfkit/svelte-components';
 	import AssetText from '$lib/components/elements/asset.svelte';
 	import type { MarketContext, UnicoveContext } from '$lib/state/client.svelte';
 	import type { UnstakingRecord } from '$lib/utils/staking';
@@ -21,8 +21,8 @@
 	import UnstakingBalances from '$lib/components/elements/unstaking.svelte';
 	import AccountBalance from '$lib/components/card/accountbalance.svelte';
 	import StakingCalculator from './stakingcalculator.svelte';
-	import { Cluster } from 'unicove-components';
-	import { Chip } from 'unicove-components';
+	import { Cluster } from '@wharfkit/svelte-components';
+	import { Chip } from '@wharfkit/svelte-components';
 	import { Currencies } from '$lib/types/currencies';
 	import { ZeroUnits } from '$lib/types/token';
 	import SystemTokenSwap from '$lib/components/banner/systemTokenSwap.svelte';

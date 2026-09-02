@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { getContext, onMount } from 'svelte';
 
-	import { Button, Card, Chip, CopyButton, cn } from 'unicove-components';
-	import { DD, DL, DLRow } from 'unicove-components';
-	import { Stack, Switcher } from 'unicove-components';
+	import { Button, Card, Chip, CopyButton, cn } from '@wharfkit/svelte-components';
+	import { DD, DL, DLRow } from '@wharfkit/svelte-components';
+	import { Stack, Switcher } from '@wharfkit/svelte-components';
 	import { page } from '$app/state';
 	import { formatDateTime } from '$lib/utils/intl';
 	import type { UnicoveContext } from '$lib/state/client.svelte.js';

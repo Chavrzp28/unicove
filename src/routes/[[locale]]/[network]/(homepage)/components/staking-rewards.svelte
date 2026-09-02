@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import type { NetworkState } from '$lib/state/network.svelte';
 	import StakedHEX from './stakedhex.svelte';
 	import { getAPR } from '$lib/utils/staking';
-	import { Button } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import { getContext } from 'svelte';
 

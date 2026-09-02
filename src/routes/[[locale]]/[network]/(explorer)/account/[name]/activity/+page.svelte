@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 
 	import ActivityV1 from './ActivityV1.svelte';
 	import ActivityV2 from './ActivityV2.svelte';

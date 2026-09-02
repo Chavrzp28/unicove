@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { Asset } from '@wharfkit/antelope';
 
-	import { AssetInput } from 'unicove-components';
-	import { Button } from 'unicove-components';
-	import { Stack } from 'unicove-components';
+	import { AssetInput } from '@wharfkit/svelte-components';
+	import { Button } from '@wharfkit/svelte-components';
+	import { Stack } from '@wharfkit/svelte-components';
 
 	let input: AssetInput;
 

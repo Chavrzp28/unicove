@@ -7,16 +7,16 @@
 		type Checksum256Type
 	} from '@wharfkit/antelope';
 	import Account from '$lib/components/elements/account.svelte';
-	import { Code, Stack } from 'unicove-components';
+	import { Code, Stack } from '@wharfkit/svelte-components';
 	import Contract from '$lib/components/elements/contract.svelte';
-	import { DateTime } from 'unicove-components';
+	import { DateTime } from '@wharfkit/svelte-components';
 	import type { ActionDisplayVariants } from '$lib/types';
 	import Transaction from './transaction.svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import { getContext, type Component } from 'svelte';
 	import type { ActionSummaryProps, ObjectifiedActionData } from '$lib/types/transaction';
 	import SquareTerminal from '@lucide/svelte/icons/square-terminal';
-	import { Card } from 'unicove-components';
+	import { Card } from '@wharfkit/svelte-components';
 
 	import ActionSummaryContainer from '$lib/components/summary/components/container.svelte';
 	import { getActionSummaryTitle } from '../summary';

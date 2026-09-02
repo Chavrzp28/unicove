@@ -4,20 +4,20 @@
 
 	import { calculateValue } from '$lib/utils';
 	import { MultiCard } from '$lib/components/layout';
-	import { Stack } from 'unicove-components';
-	import { AssetInput } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
+	import { AssetInput } from '@wharfkit/svelte-components';
 	import AssetText from '$lib/components/elements/asset.svelte';
-	import { Button } from 'unicove-components';
-	import { BytesInput } from 'unicove-components';
-	import { Card } from 'unicove-components';
-	import { Label } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
+	import { BytesInput } from '@wharfkit/svelte-components';
+	import { Card } from '@wharfkit/svelte-components';
+	import { Label } from '@wharfkit/svelte-components';
 	import RamPriceHistory from '$lib/components/chart/rampricehistory.svelte';
 	import type { SystemResources } from '$lib/types/network';
 	import type { MarketContext, UnicoveContext } from '$lib/state/client.svelte';
 	import AccountBalance from '$lib/components/card/accountbalance.svelte';
 
 	import { RAMCalculatorState } from './state.svelte';
-	import { DD, DL, DLRow } from 'unicove-components';
+	import { DD, DL, DLRow } from '@wharfkit/svelte-components';
 	import SystemTokenSwap from '$lib/components/banner/systemTokenSwap.svelte';
 	import About from '$lib/components/seo/about.svelte';
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { Card, Stack } from 'unicove-components';
+	import { Card, Stack } from '@wharfkit/svelte-components';
 	import { ChevronDown } from '@lucide/svelte';
 	import { page } from '$app/state';
 	import { localizePath } from '$lib/utils/url';

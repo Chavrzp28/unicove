@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import { Asset } from '@wharfkit/antelope';
-	import { Card } from 'unicove-components';
+	import { Card } from '@wharfkit/svelte-components';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import AssetText from '$lib/components/elements/asset.svelte';
 	import SentimentMeter from '$lib/components/sentiment/SentimentMeter.svelte';

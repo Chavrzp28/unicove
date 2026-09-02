@@ -1,6 +1,6 @@
 @import 'tailwindcss';
-@import 'unicove-components';
-@source "../node_modules/unicove-components";
+@import '@wharfkit/svelte-components';
+@source "../node_modules/@wharfkit/svelte-components";
 
 /* The component library defines the warning role only under [data-scheme='dark'], so text-warning is unresolved in light mode. */
 :root:not([data-scheme='dark']) {

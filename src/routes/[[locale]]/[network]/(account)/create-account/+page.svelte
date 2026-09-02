@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { Button, Card, Chip, Stack, cn } from 'unicove-components';
+	import { Button, Card, Chip, Stack, cn } from '@wharfkit/svelte-components';
 
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import { supportsAccountCreation } from '$lib/wharf/plugins';

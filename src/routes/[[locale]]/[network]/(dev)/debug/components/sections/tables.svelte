@@ -1,7 +1,7 @@
 <script>
-	import { DD, DL, DLRow } from 'unicove-components';
+	import { DD, DL, DLRow } from '@wharfkit/svelte-components';
 	import Account from '$lib/components/elements/account.svelte';
-	import { Card, Stack } from 'unicove-components';
+	import { Card, Stack } from '@wharfkit/svelte-components';
 
 	const items = [
 		{ title: 'Some title', description: '123456' },

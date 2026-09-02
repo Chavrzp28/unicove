@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { Card, Stack } from 'unicove-components';
+	import { Card, Stack } from '@wharfkit/svelte-components';
 	import { page } from '$app/state';
 	import { formatDateTime } from '$lib/utils/intl';
 	import type { UnicoveContext } from '$lib/state/client.svelte';

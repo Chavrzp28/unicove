@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import Typography from './sections/typography.svelte';
 	import Buttons from './sections/buttons.svelte';
 	import SelectSection from './sections/select.svelte';

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import UnicoveWordmark from '$lib/assets/unicove-wordmark.svelte';
 	import bgDesktop from '$lib/assets/hero/eos/bg1@2x.png?enhanced';
 	import bgMobile from '$lib/assets/hero/eos/bg2@2x.png?enhanced';
@@ -11,7 +11,7 @@
 	import waxDark from '$lib/assets/hero/wax/dark.png?enhanced';
 	import UnicoveOutline from '$lib/assets/unicove-outline.svg';
 
-	import { Button } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
 	import { browser } from '$app/environment';
 	import { getContext } from 'svelte';
 	import { goto } from '$app/navigation';

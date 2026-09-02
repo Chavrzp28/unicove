@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { Card } from 'unicove-components';
+	import { Card } from '@wharfkit/svelte-components';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import { DiscussionSummary } from '$lib/discussion/summary.svelte';
 	import type { Tuple } from '$lib/msg/model';

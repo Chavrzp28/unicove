@@ -7,7 +7,7 @@
 	import AssetElement from '$lib/components/elements/asset.svelte';
 	import { ramtoken } from '$lib/wharf/chains';
 	import Row from '../components/row.svelte';
-	import { Chip } from 'unicove-components';
+	import { Chip } from '@wharfkit/svelte-components';
 
 	interface Props extends Omit<ActionSummaryProps, 'data'> {
 		data: SystemContract.Types.buyrambytes;

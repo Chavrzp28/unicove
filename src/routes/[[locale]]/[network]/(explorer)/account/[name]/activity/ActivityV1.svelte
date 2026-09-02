@@ -4,7 +4,7 @@
 
 	import { ActivityLoader } from './state.v1.svelte.js';
 	import { getActionSummaryComponent } from '$lib/components/summary/index.js';
-	import { Button, Card } from 'unicove-components';
+	import { Button, Card } from '@wharfkit/svelte-components';
 	import Trace from '$lib/components/elements/trace.svelte';
 	import Transaction from '$lib/components/elements/transaction.svelte';
 	import Contract from '$lib/components/elements/contract.svelte';

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 
-	import { Card, Code, Stack } from 'unicove-components';
+	import { Card, Code, Stack } from '@wharfkit/svelte-components';
 	import type { MarketContext, UnicoveContext } from '$lib/state/client.svelte.js';
 
 	import { groupSwaps } from './describe.svelte';

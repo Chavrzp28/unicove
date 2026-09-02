@@ -3,9 +3,9 @@
 	import { getContext } from 'svelte';
 
 	import type { UnicoveContext } from '$lib/state/client.svelte';
-	import { Card } from 'unicove-components';
+	import { Card } from '@wharfkit/svelte-components';
 	import Account from '$lib/components/elements/account.svelte';
-	import { Button } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
 	import { goto } from '$app/navigation';
 
 	const { data } = $props();

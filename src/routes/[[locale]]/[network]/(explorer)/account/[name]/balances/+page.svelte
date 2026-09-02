@@ -5,7 +5,7 @@
 	import type { MarketContext, UnicoveContext } from '$lib/state/client.svelte';
 	import { getContext } from 'svelte';
 	import { TokenBalanceValue, ZeroUnits } from '$lib/types/token.js';
-	import { Button, Table, TD, TH, TR } from 'unicove-components';
+	import { Button, Table, TD, TH, TR } from '@wharfkit/svelte-components';
 	import { Currencies } from '$lib/types/currencies.js';
 
 	const { data } = $props();

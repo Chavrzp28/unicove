@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Label } from 'unicove-components';
+	import { Label } from '@wharfkit/svelte-components';
 
 	interface Props {
 		startDate: string;

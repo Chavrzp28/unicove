@@ -1,6 +1,6 @@
 <script lang="ts">
 	import TransfersView from './TransfersView.svelte';
-	import { Card, Stack } from 'unicove-components';
+	import { Card, Stack } from '@wharfkit/svelte-components';
 
 	let { data } = $props();
 </script>

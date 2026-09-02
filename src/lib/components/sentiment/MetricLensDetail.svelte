@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Asset } from '@wharfkit/antelope';
-	import { Card } from 'unicove-components';
+	import { Card } from '@wharfkit/svelte-components';
 	import Weight from '@lucide/svelte/icons/scale';
 	import type { MetricLens, AssetMetricStats } from '$lib/types/sentiment';
 	import AssetText from '$lib/components/elements/asset.svelte';

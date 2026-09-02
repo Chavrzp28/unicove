@@ -3,7 +3,7 @@
 	import type { UnicoveContext } from '$lib/state/client.svelte.js';
 	import { page } from '$app/stores';
 	import Pageheader from '$lib/components/pageheader.svelte';
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import { goto } from '$app/navigation';
 
 	const { children, data } = $props();

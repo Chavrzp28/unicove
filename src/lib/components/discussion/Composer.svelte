@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { Button } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
 	import AssetText from '$lib/components/elements/asset.svelte';
 	import Link from '$lib/components/elements/link.svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte';

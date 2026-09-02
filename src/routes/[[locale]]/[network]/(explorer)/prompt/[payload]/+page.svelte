@@ -9,8 +9,8 @@
 		SigningRequest,
 		type NameType
 	} from '@wharfkit/session';
-	import { Button, Label, TextInput, CopyButton, Code } from 'unicove-components';
-	import zlib from 'pako';
+	import { Button, Label, TextInput, CopyButton, Code } from '@wharfkit/svelte-components';
+	import * as zlib from 'pako';
 
 	import { getActionSummaryComponent } from '$lib/components/summary/index.js';
 	import { requestPublicKeys, requestSnap } from '$lib/metamask-snap.js';

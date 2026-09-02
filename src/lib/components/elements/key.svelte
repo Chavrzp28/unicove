@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { UnicoveContext } from '$lib/state/client.svelte';
-	import { Key as KeyElement, type KeyProps } from 'unicove-components';
+	import { Key as KeyElement, type KeyProps } from '@wharfkit/svelte-components';
 	import { getContext } from 'svelte';
 
 	const { urlPath } = getContext<UnicoveContext>('state');

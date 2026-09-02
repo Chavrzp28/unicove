@@ -1,7 +1,14 @@
 <script lang="ts">
 	import { Asset, Name } from '@wharfkit/antelope';
 	import { getContext } from 'svelte';
-	import { Stack, NameInput, SymbolInput, AssetInput, Button, Label } from 'unicove-components';
+	import {
+		Stack,
+		NameInput,
+		SymbolInput,
+		AssetInput,
+		Button,
+		Label
+	} from '@wharfkit/svelte-components';
 	import TransactSummary from '$lib/components/transact/summary.svelte';
 	import TransactError from '$lib/components/transact/error.svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte';

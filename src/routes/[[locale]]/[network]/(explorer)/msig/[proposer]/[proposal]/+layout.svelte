@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Card, Stack } from 'unicove-components';
+	import { Card, Stack } from '@wharfkit/svelte-components';
 	import PillGroup from '$lib/components/navigation/pillgroup.svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte.js';
 	import { getContext, onMount, setContext } from 'svelte';

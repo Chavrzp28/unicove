@@ -5,7 +5,7 @@
 	import { Types } from '$lib/types/rex';
 	import AccountElement from '$lib/components/elements/account.svelte';
 	import AssetElement from '$lib/components/elements/asset.svelte';
-	import { Chip } from 'unicove-components';
+	import { Chip } from '@wharfkit/svelte-components';
 	import Row from '../components/row.svelte';
 
 	interface Props extends Omit<ActionSummaryProps, 'data'> {

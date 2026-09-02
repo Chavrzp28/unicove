@@ -8,7 +8,7 @@
 	import { fade } from 'svelte/transition';
 	import { createDialog, melt } from '@melt-ui/svelte';
 	import { AlertTriangle, EyeOff } from '@lucide/svelte';
-	import { Button } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
 
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import { isSuspiciousMemo } from '$lib/utils/memo';

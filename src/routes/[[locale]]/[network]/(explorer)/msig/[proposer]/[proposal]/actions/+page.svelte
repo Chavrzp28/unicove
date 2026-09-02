@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import type { UnicoveContext } from '$lib/state/client.svelte.js';
 	import ActionCard from '$lib/components/elements/action.svelte';
 	import SelectActionVariant from '$lib/components/select/actionvariant.svelte';

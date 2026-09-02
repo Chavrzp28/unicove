@@ -3,7 +3,7 @@
 	import type { AccountValue } from '$lib/state/client/account.svelte';
 	import { cn, percentString } from '$lib/utils';
 	import { getContext } from 'svelte';
-	import { Card, DT, DD, DL, DLRow } from 'unicove-components';
+	import { Card, DT, DD, DL, DLRow } from '@wharfkit/svelte-components';
 
 	const context = getContext<UnicoveContext>('state');
 	const locale = $derived(context.settings.data.locale);

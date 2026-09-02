@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { type ComponentProps, type Snippet } from 'svelte';
-	import type { TextInput } from 'unicove-components';
+	import type { TextInput } from '@wharfkit/svelte-components';
 
 	import { defaultRegistry } from '$lib/state/search';
 	import type { SearchRecord } from '$lib/state/search';

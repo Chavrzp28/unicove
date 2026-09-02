@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Asset as AssetElement, type AssetProps } from 'unicove-components';
+	import { Asset as AssetElement, type AssetProps } from '@wharfkit/svelte-components';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import { getContext } from 'svelte';
 

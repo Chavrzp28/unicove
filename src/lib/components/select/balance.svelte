@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { createSelect, type SelectOption } from '@melt-ui/svelte';
-	import { SelectTrigger, SelectMenu, SelectItem } from 'unicove-components';
+	import { SelectTrigger, SelectMenu, SelectItem } from '@wharfkit/svelte-components';
 	import { writable } from 'svelte/store';
 	import { TokenBalance, tokenEquals } from '$lib/types/token';
 	import type { ChangeFn } from '@melt-ui/svelte/internal/helpers';
-	import { Code } from 'unicove-components';
+	import { Code } from '@wharfkit/svelte-components';
 
 	interface BalanceSelectOption extends SelectOption<number> {
 		image?: string;

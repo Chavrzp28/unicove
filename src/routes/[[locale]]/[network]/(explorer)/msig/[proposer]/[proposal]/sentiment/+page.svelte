@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext, onMount } from 'svelte';
-	import { Button, Card, Stack } from 'unicove-components';
+	import { Button, Card, Stack } from '@wharfkit/svelte-components';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import VoteButtons from '$lib/components/sentiment/voteButtons.svelte';
 	import MetricOverviewCard from '$lib/components/sentiment/MetricOverviewCard.svelte';

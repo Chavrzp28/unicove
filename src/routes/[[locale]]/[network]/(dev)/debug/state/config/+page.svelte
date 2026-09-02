@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Code } from 'unicove-components';
-	import { Stack } from 'unicove-components';
+	import { Code } from '@wharfkit/svelte-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import { getContext } from 'svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
-	import { Button } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
 	import { PUBLIC_ENVIRONMENT } from '$env/static/public';
 
 	const context = getContext<UnicoveContext>('state');

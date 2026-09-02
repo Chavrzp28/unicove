@@ -3,7 +3,7 @@
 	import { fade } from 'svelte/transition';
 	import { createDialog, melt } from '@melt-ui/svelte';
 	import { Name } from '@wharfkit/antelope';
-	import { Button, Label, NameInput } from 'unicove-components';
+	import { Button, Label, NameInput } from '@wharfkit/svelte-components';
 
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 

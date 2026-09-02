@@ -10,7 +10,7 @@
 	import AccountElement from '$lib/components/elements/account.svelte';
 	import Block from '$lib/components/elements/block.svelte';
 	import Contract from '$lib/components/elements/contract.svelte';
-	import { Card, Stack, Number } from 'unicove-components';
+	import { Card, Stack, Number } from '@wharfkit/svelte-components';
 
 	let { data } = $props();
 

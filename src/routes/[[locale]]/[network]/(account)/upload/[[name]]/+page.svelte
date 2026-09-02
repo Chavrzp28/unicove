@@ -1,16 +1,16 @@
 <script lang="ts">
 	import { ABI, Action, Bytes, Checksum256, Name, Serializer } from '@wharfkit/antelope';
-	import { Card, Fieldset, FileUpload } from 'unicove-components';
-	import { Code } from 'unicove-components';
+	import { Card, Fieldset, FileUpload } from '@wharfkit/svelte-components';
+	import { Code } from '@wharfkit/svelte-components';
 	import { getContext, onMount } from 'svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte.js';
-	import { NameInput } from 'unicove-components';
+	import { NameInput } from '@wharfkit/svelte-components';
 	import TransactForm from '$lib/components/transact/form.svelte';
-	import { Button } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
 
 	import { SingleCard } from '$lib/components/layout/index.js';
-	import { Stack } from 'unicove-components';
-	import { Label } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
+	import { Label } from '@wharfkit/svelte-components';
 
 	const { data } = $props();
 	const context = getContext<UnicoveContext>('state');
@@ -120,7 +120,8 @@
 
 			<Fieldset>
 				<Label for="account-input">Contract Files</Label>
-				<FileUpload multiple={true} accept=".abi,.wasm" onAccept={set} />
+				<!-- FileUploadProps is not generic over multiple, so the flag must be cast -->
+				<FileUpload multiple={true as unknown as false} accept=".abi,.wasm" onAccept={set} />
 			</Fieldset>
 
 			<Button onclick={transact} disabled={actions.length === 0}>Upload</Button>

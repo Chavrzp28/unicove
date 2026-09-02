@@ -2,9 +2,9 @@
 	import { getContext } from 'svelte';
 	import type { MarketContext, UnicoveContext } from '$lib/state/client.svelte';
 
-	import { Card, Stack } from 'unicove-components';
-	import { Button } from 'unicove-components';
-	import { Chip } from 'unicove-components';
+	import { Card, Stack } from '@wharfkit/svelte-components';
+	import { Button } from '@wharfkit/svelte-components';
+	import { Chip } from '@wharfkit/svelte-components';
 	import AssetText from '$lib/components/elements/asset.svelte';
 
 	const context = getContext<UnicoveContext>('state');

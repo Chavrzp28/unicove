@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Block, type BlockProps } from 'unicove-components';
+	import { Block, type BlockProps } from '@wharfkit/svelte-components';
 	import { getContext } from 'svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 

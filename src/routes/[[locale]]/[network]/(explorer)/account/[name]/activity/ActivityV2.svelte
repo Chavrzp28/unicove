@@ -6,7 +6,7 @@
 	import { ActivityPaginator } from './state.v2.svelte.js';
 	import ActivityControlBar from './ActivityControlBar.svelte';
 	import { getActionSummaryComponent } from '$lib/components/summary/index.js';
-	import { Button, Label, Stack, NameInput } from 'unicove-components';
+	import { Button, Label, Stack, NameInput } from '@wharfkit/svelte-components';
 	import PaginationControls from '$lib/components/filters/PaginationControls.svelte';
 	import FilterToggleButton from '$lib/components/filters/FilterToggleButton.svelte';
 	import ClearFiltersButton from '$lib/components/filters/ClearFiltersButton.svelte';

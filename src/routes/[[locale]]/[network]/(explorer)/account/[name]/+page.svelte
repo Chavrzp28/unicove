@@ -3,9 +3,9 @@
 	import DollarSign from '@lucide/svelte/icons/dollar-sign';
 
 	import { AccountValueState } from '$lib/state/value.svelte.js';
-	import { Card, Stack } from 'unicove-components';
+	import { Card, Stack } from '@wharfkit/svelte-components';
 	import AssetText from '$lib/components/elements/asset.svelte';
-	import { Button } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
 	import CurrencySelect from '$lib/components/select/currency.svelte';
 	import ResourceCard from '$lib/components/elements/resourceCard.svelte';
 	import TokenBalance from '$lib/components/card/tokenbalance.svelte';

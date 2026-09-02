@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import Thread from '$lib/components/discussion/Thread.svelte';
 	import { topicDescriptor } from '$lib/discussion/targets';
 	import type { UnicoveContext } from '$lib/state/client.svelte';

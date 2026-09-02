@@ -4,20 +4,20 @@
 
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 
-	import { Button } from 'unicove-components';
-	import { Code } from 'unicove-components';
-	import { Label } from 'unicove-components';
-	import { Stack } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
+	import { Code } from '@wharfkit/svelte-components';
+	import { Label } from '@wharfkit/svelte-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import TransactSummary from '$lib/components/transact/summary.svelte';
 	import TransactError from '$lib/components/transact/error.svelte';
-	import { AssetInput } from 'unicove-components';
-	import { BytesInput } from 'unicove-components';
+	import { AssetInput } from '@wharfkit/svelte-components';
+	import { BytesInput } from '@wharfkit/svelte-components';
 	import AssetText from '$lib/components/elements/asset.svelte';
 	import RamResource from '$lib/components/elements/ramresource.svelte';
 
 	import { SellRAMState } from './state.svelte';
 	import { preventDefault } from '$lib/utils';
-	import { DD, DL, DLRow } from 'unicove-components';
+	import { DD, DL, DLRow } from '@wharfkit/svelte-components';
 
 	let bytesInput: BytesInput | undefined = $state();
 	let assetInput: AssetInput | undefined = $state();

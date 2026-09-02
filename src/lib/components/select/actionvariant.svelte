@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import type { ActionDisplayVariants } from '$lib/types';
-	import { Button, Switcher } from 'unicove-components';
+	import { Button, Switcher } from '@wharfkit/svelte-components';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 
 	const context = getContext<UnicoveContext>('state');

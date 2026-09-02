@@ -2,7 +2,7 @@
 	import { getContext } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
-	import { Button, Card, Label, Stack, Switch } from 'unicove-components';
+	import { Button, Card, Label, Stack, Switch } from '@wharfkit/svelte-components';
 	import type { CreateSwitchProps } from '@melt-ui/svelte';
 
 	import ProposalCard from '../components/ProposalCard.svelte';

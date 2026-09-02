@@ -2,7 +2,7 @@
 	import { getContext, onMount } from 'svelte';
 
 	import { MultiCard } from '$lib/components/layout';
-	import { Card } from 'unicove-components';
+	import { Card } from '@wharfkit/svelte-components';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import { BidnameState, type BidnameApiResponse } from '$lib/state/bidname.svelte';
 	import AuctionHero from './components/auction-hero.svelte';

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext, onDestroy, type ComponentProps } from 'svelte';
 	import { createDialog, melt, type CreateDialogProps } from '@melt-ui/svelte';
-	import type { TextInput } from 'unicove-components';
+	import type { TextInput } from '@wharfkit/svelte-components';
 	import { preventDefault } from '$lib/utils';
 	import { fade, scale } from 'svelte/transition';
 	import {
@@ -12,7 +12,7 @@
 	} from '$lib/state/search';
 	import SearchIcon from '@lucide/svelte/icons/search';
 	import X from '@lucide/svelte/icons/x';
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import { cn } from '$lib/utils';
 	import Result from './result.svelte';
 	import { browser } from '$app/environment';

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { Name } from '@wharfkit/antelope';
 
-	import { NameInput } from 'unicove-components';
-	import { Button } from 'unicove-components';
-	import { Stack } from 'unicove-components';
+	import { NameInput } from '@wharfkit/svelte-components';
+	import { Button } from '@wharfkit/svelte-components';
+	import { Stack } from '@wharfkit/svelte-components';
 
 	let input: NameInput;
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Select, type ExtendedSelectOption } from 'unicove-components';
+	import { Select, type ExtendedSelectOption } from '@wharfkit/svelte-components';
 
 	interface Props {
 		value: number;

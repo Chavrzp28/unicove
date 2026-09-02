@@ -3,19 +3,19 @@
 	import { getContext } from 'svelte';
 	import type { ChangeFn } from '@melt-ui/svelte/internal/helpers';
 
-	import { Switch } from 'unicove-components';
+	import { Switch } from '@wharfkit/svelte-components';
 	import LanguageSelect from '$lib/components/select/language.svelte';
-	import { Label } from 'unicove-components';
-	import { Card, Stack } from 'unicove-components';
+	import { Label } from '@wharfkit/svelte-components';
+	import { Card, Stack } from '@wharfkit/svelte-components';
 	import { type UnicoveContext } from '$lib/state/client.svelte';
-	import { Code } from 'unicove-components';
+	import { Code } from '@wharfkit/svelte-components';
 	import Pageheader from '$lib/components/pageheader.svelte';
-	import { Select } from 'unicove-components';
-	import type { ExtendedSelectOption } from 'unicove-components';
+	import { Select } from '@wharfkit/svelte-components';
+	import type { ExtendedSelectOption } from '@wharfkit/svelte-components';
 	import { TimeSeconds } from '$lib/state/settings.svelte.js';
-	import { DatetimeInput } from 'unicove-components';
+	import { DatetimeInput } from '@wharfkit/svelte-components';
 	import type { FormEventHandler } from 'svelte/elements';
-	import { Button } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
 	import CurrencySelect from '$lib/components/select/currency.svelte';
 	import DebugToggle from '$lib/components/select/debug.svelte';
 	import SchemeToggle from '$lib/components/select/scheme.svelte';

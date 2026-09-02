@@ -12,15 +12,15 @@
 	import { Types as RAMTypes } from '$lib/types/ram';
 
 	import { SingleCard } from '$lib/components/layout';
-	import { Stack } from 'unicove-components';
-	import { AssetInput } from 'unicove-components';
-	import { Button } from 'unicove-components';
-	import { Code } from 'unicove-components';
-	import { Label } from 'unicove-components';
-	import { NameInput } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
+	import { AssetInput } from '@wharfkit/svelte-components';
+	import { Button } from '@wharfkit/svelte-components';
+	import { Code } from '@wharfkit/svelte-components';
+	import { Label } from '@wharfkit/svelte-components';
+	import { NameInput } from '@wharfkit/svelte-components';
 	import Progress from '$lib/components/progress.svelte';
 	import SummarySend from '$lib/components/summary/eosio.token/transfer.svelte';
-	import { TextInput } from 'unicove-components';
+	import { TextInput } from '@wharfkit/svelte-components';
 	import TokenSelect from '$lib/components/select/balance.svelte';
 	import TransactError from '$lib/components/transact/error.svelte';
 	import TransactSummary from '$lib/components/transact/summary.svelte';

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Button, Table, TD, TH, TR } from 'unicove-components';
-	import { Code } from 'unicove-components';
+	import { Button, Table, TD, TH, TR } from '@wharfkit/svelte-components';
+	import { Code } from '@wharfkit/svelte-components';
 	import Account from '$lib/components/elements/account.svelte';
 	import AssetText from '$lib/components/elements/asset.svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte.js';

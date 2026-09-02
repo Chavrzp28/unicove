@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { SingleCard } from '$lib/components/layout';
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	// import Generic404 from '$lib/components/errors/generic.svelte';
 </script>
 

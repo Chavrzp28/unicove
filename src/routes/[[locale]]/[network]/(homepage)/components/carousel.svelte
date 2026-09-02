@@ -4,7 +4,7 @@
 	import { getContext } from 'svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import TextBlock from './text-block.svelte';
-	import { Button } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
 
 	const { urlPath } = getContext<UnicoveContext>('state');
 

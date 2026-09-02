@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Button } from 'unicove-components';
-	import { Stack } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import { cn } from '$lib/utils/style';
 	import type { Snippet } from 'svelte';
 

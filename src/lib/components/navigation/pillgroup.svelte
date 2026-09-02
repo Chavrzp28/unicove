@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
 	import { page } from '$app/state';
 	import { cn } from '$lib/utils';
 	import { createSelect, melt, type CreateSelectProps } from '@melt-ui/svelte';

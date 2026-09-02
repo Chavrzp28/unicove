@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import { Card, cn } from 'unicove-components';
+	import { Card, cn } from '@wharfkit/svelte-components';
 
 	interface Props {
 		label: string;

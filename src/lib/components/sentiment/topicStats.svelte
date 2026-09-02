@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Card } from 'unicove-components';
+	import { Card } from '@wharfkit/svelte-components';
 	import type { TopicStatistics } from '$lib/types/sentiment';
 	import AssetText from '$lib/components/elements/asset.svelte';
 	import Weight from '@lucide/svelte/icons/scale';

@@ -3,8 +3,8 @@
 <script lang="ts">
 	import type { HTMLAttributes } from 'svelte/elements';
 	import AssetText from '$lib/components/elements/asset.svelte';
-	import { Card, Stack, Table, TD, TH, TR } from 'unicove-components';
-	import { Button } from 'unicove-components';
+	import { Card, Stack, Table, TD, TH, TR } from '@wharfkit/svelte-components';
+	import { Button } from '@wharfkit/svelte-components';
 	import type { UnstakingRecord } from '$lib/utils/staking';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import { getContext } from 'svelte';

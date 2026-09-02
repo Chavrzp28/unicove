@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { getContext } from 'svelte';
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import { Shield } from '@lucide/svelte';
 	import Pageheader from '$lib/components/pageheader.svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte';

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { Card, cn } from 'unicove-components';
+	import { Card, cn } from '@wharfkit/svelte-components';
 	import Account from '$lib/components/elements/account.svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import type { ActivityEvent } from '@wharfkit/msigs';

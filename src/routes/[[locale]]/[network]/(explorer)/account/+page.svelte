@@ -10,7 +10,7 @@
 		TH,
 		TR,
 		type ExtendedSelectOption
-	} from 'unicove-components';
+	} from '@wharfkit/svelte-components';
 
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import {

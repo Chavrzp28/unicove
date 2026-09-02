@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, Chip } from 'unicove-components';
+	import { Button, Chip } from '@wharfkit/svelte-components';
 	import ThumbsUp from '@lucide/svelte/icons/thumbs-up';
 	import ThumbsDown from '@lucide/svelte/icons/thumbs-down';
 	import { getContext } from 'svelte';

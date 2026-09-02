@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, Switcher } from 'unicove-components';
+	import { Button, Switcher } from '@wharfkit/svelte-components';
 	import type { StatWindow } from '$lib/state/statindex/utils';
 
 	interface Props {

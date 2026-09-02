@@ -12,7 +12,7 @@
 		NameInput,
 		Select,
 		type ExtendedSelectOption
-	} from 'unicove-components';
+	} from '@wharfkit/svelte-components';
 	import PaginationControls from '$lib/components/filters/PaginationControls.svelte';
 	import FilterToggleButton from '$lib/components/filters/FilterToggleButton.svelte';
 	import ClearFiltersButton from '$lib/components/filters/ClearFiltersButton.svelte';

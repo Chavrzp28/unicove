@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Card, Stack } from 'unicove-components';
+	import { Card, Stack } from '@wharfkit/svelte-components';
 
 	interface EmptyStateProps {
 		title: string;

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Stack, Button } from 'unicove-components';
+	import { Stack, Button } from '@wharfkit/svelte-components';
 
 	interface Props {
 		connect: () => Promise<void>;

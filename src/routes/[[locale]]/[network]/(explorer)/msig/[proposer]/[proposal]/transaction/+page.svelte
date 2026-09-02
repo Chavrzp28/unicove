@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 
-	import { Code, CopyButton } from 'unicove-components';
-	import { Stack } from 'unicove-components';
+	import { Code, CopyButton } from '@wharfkit/svelte-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import type { UnicoveContext } from '$lib/state/client.svelte.js';
 
 	import { ApprovalManager } from '../manager.svelte';

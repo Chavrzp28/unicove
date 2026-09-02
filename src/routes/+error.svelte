@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import Generic404 from '$lib/components/errors/generic.svelte';
-	import { Button } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
 </script>
 
 <svelte:head>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 
-	import { Button, Stack } from 'unicove-components';
+	import { Button, Stack } from '@wharfkit/svelte-components';
 	import AccountLink from '$lib/components/elements/account.svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import type { BidnameApiResponse } from '$lib/state/bidname.svelte';

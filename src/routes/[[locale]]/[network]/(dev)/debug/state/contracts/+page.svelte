@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Code } from 'unicove-components';
-	import { Stack } from 'unicove-components';
+	import { Code } from '@wharfkit/svelte-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import { getContext } from 'svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import type { DefaultContracts } from '$lib/wharf/chains';

@@ -2,7 +2,7 @@
 	import { getContext } from 'svelte';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import ExternalLink from '@lucide/svelte/icons/external-link';
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import type { WalletPlugin } from '@wharfkit/session';
 
 	import type { UnicoveContext } from '$lib/state/client.svelte';

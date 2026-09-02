@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import { Asset } from '@wharfkit/antelope';
-	import { Card, Stack, Button, Number as NumberFormat } from 'unicove-components';
+	import { Card, Stack, Button, Number as NumberFormat } from '@wharfkit/svelte-components';
 	import { ThumbsDown, ThumbsUp, Users } from '@lucide/svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import type { VoteWithWeight, SentimentStatistics } from '$lib/types/sentiment';

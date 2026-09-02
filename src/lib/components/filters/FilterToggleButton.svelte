@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { FilterIcon, ChevronDownIcon } from '@lucide/svelte';
-	import { Chip } from 'unicove-components';
+	import { Chip } from '@wharfkit/svelte-components';
 
 	interface Props {
 		isOpen: boolean;

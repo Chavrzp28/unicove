@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { getContext, onDestroy, onMount } from 'svelte';
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import PillGroup from '$lib/components/navigation/pillgroup.svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte.js';
 	import dayjs from 'dayjs';
-	import { Button } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
 
 	const context = getContext<UnicoveContext>('state');
 	const { urlPath } = context;

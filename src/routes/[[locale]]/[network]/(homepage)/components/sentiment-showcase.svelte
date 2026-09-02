@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, Stack } from 'unicove-components';
+	import { Button, Stack } from '@wharfkit/svelte-components';
 	import type { TopicWithStats } from '$lib/types/sentiment';
 	import { getContext } from 'svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte';

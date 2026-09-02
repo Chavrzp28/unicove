@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext, onMount } from 'svelte';
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import Thread from '$lib/components/discussion/Thread.svelte';
 	import { msigDescriptor } from '$lib/discussion/targets';
 	import type { MsigSentimentState } from '$lib/state/sentiment/msig.svelte';

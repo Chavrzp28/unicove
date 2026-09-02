@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Card, Stack, Table, TD, TH, TR } from 'unicove-components';
-	import { Code } from 'unicove-components';
-	import { Button } from 'unicove-components';
-	import { TextInput } from 'unicove-components';
-	import { Select, type ExtendedSelectOption } from 'unicove-components';
+	import { Card, Stack, Table, TD, TH, TR } from '@wharfkit/svelte-components';
+	import { Code } from '@wharfkit/svelte-components';
+	import { Button } from '@wharfkit/svelte-components';
+	import { TextInput } from '@wharfkit/svelte-components';
+	import { Select, type ExtendedSelectOption } from '@wharfkit/svelte-components';
 	import {
 		ChevronsUpDownIcon,
 		ChevronDownIcon,

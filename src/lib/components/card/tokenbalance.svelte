@@ -13,11 +13,11 @@
 		ZeroUnits,
 		type TokenPair
 	} from '$lib/types/token';
-	import { Button } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
-	import { Code } from 'unicove-components';
+	import { Code } from '@wharfkit/svelte-components';
 	import Link from '$lib/components/elements/link.svelte';
-	import { Details } from 'unicove-components';
+	import { Details } from '@wharfkit/svelte-components';
 
 	const context = getContext<UnicoveContext>('state');
 	const { urlPath } = context;

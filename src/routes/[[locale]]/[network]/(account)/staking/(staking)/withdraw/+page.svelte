@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { Stack, Switcher } from 'unicove-components';
-	import { Button } from 'unicove-components';
+	import { Stack, Switcher } from '@wharfkit/svelte-components';
+	import { Button } from '@wharfkit/svelte-components';
 	import TransactSummary from '$lib/components/transact/summary.svelte';
 	import TransactError from '$lib/components/transact/error.svelte';
 
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import { getContext } from 'svelte';
 	import { WithdrawManager } from './manager.svelte';
-	import { Card } from 'unicove-components';
+	import { Card } from '@wharfkit/svelte-components';
 
 	const context = getContext<UnicoveContext>('state');
 	const { data } = $props();

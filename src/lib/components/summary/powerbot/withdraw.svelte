@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Asset, Name, type AssetType, type NameType } from '@wharfkit/antelope';
-	import { Chip } from 'unicove-components';
+	import { Chip } from '@wharfkit/svelte-components';
 
 	import type { ActionSummaryProps } from '$lib/types/transaction';
 	import AccountLink from '$lib/components/elements/account.svelte';

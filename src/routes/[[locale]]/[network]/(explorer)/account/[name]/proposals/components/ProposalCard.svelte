@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { Card, Chip, Cluster, cn, Stack } from 'unicove-components';
+	import { Card, Chip, Cluster, cn, Stack } from '@wharfkit/svelte-components';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import type { Proposal } from '@wharfkit/msigs';
 	import type { PermissionLevel } from '@wharfkit/antelope';

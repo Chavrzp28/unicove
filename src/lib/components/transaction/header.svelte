@@ -2,9 +2,9 @@
 	import type { TransactionResponse } from '$lib/types/transaction';
 	import Block from '$lib/components/elements/block.svelte';
 	import Contract from '../elements/contract.svelte';
-	import { Number } from 'unicove-components';
-	import { DateTime } from 'unicove-components';
-	import { DD, DL, DLRow } from 'unicove-components';
+	import { Number } from '@wharfkit/svelte-components';
+	import { DateTime } from '@wharfkit/svelte-components';
+	import { DD, DL, DLRow } from '@wharfkit/svelte-components';
 
 	interface TransactionHeaderProps {
 		transaction: TransactionResponse;

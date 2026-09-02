@@ -3,7 +3,7 @@
 	import Markdown from 'svelte-exmarkdown';
 	import { gfmPlugin } from 'svelte-exmarkdown/gfm';
 	import type { Plugin } from 'svelte-exmarkdown';
-	import { TD, TH, TR } from 'unicove-components';
+	import { TD, TH, TR } from '@wharfkit/svelte-components';
 	import { rehypeVpHeadingIds } from '$lib/vp/headings';
 	import { VP_BRANCH } from '$lib/vp/links';
 	import VpLink from './VpLink.svelte';

@@ -1,7 +1,7 @@
 <script>
-	import { Button } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
 
-	import { Card, Stack, Switcher } from 'unicove-components';
+	import { Card, Stack, Switcher } from '@wharfkit/svelte-components';
 </script>
 
 <Stack id="cards">

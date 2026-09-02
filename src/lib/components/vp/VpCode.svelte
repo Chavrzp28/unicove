@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { Code } from 'unicove-components';
+	import { Code } from '@wharfkit/svelte-components';
 
 	interface Props {
 		children?: import('svelte').Snippet;

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Stack } from 'unicove-components';
-	import { TextInput } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
+	import { TextInput } from '@wharfkit/svelte-components';
 	import ContractTable from '$lib/components/contract/table.svelte';
 
 	let filter = $state('');

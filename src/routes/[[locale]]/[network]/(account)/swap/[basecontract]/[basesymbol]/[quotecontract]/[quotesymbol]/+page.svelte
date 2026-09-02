@@ -2,21 +2,21 @@
 	import { Asset, Checksum256, type AnyAction } from '@wharfkit/antelope';
 	import { getContext } from 'svelte';
 
-	import { Code } from 'unicove-components';
-	import { AssetInput } from 'unicove-components';
+	import { Code } from '@wharfkit/svelte-components';
+	import { AssetInput } from '@wharfkit/svelte-components';
 	import AssetText from '$lib/components/elements/asset.svelte';
-	import { Button } from 'unicove-components';
-	import { IconButton } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
+	import { IconButton } from '@wharfkit/svelte-components';
 	import TransactForm from '$lib/components/transact/form.svelte';
 
 	import type { MarketContext, UnicoveContext } from '$lib/state/client.svelte.js';
 	import { TokenBalance, TokenSwap, ZeroUnits } from '$lib/types/token.js';
 	import { ArrowRight, ArrowRightLeft } from '@lucide/svelte';
-	import { Label } from 'unicove-components';
+	import { Label } from '@wharfkit/svelte-components';
 	import { SingleCard } from '$lib/components/layout';
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import { deriveSwapAction } from '../../../../swap.js';
-	import { Switcher } from 'unicove-components';
+	import { Switcher } from '@wharfkit/svelte-components';
 
 	const { data } = $props();
 

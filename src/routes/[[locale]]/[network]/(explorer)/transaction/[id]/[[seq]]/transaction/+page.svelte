@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Code } from 'unicove-components';
+	import { Code } from '@wharfkit/svelte-components';
 	import type { PageData } from './$types';
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 
 	const { data } = $props<{ data: PageData }>();
 </script>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
-	import { Chip } from 'unicove-components';
+	import { Chip } from '@wharfkit/svelte-components';
 	import { shortLabel, type TargetDescriptor } from '$lib/discussion/targets';
 
 	interface Props {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Code, CopyButton, Stack } from 'unicove-components';
+	import { Code, CopyButton, Stack } from '@wharfkit/svelte-components';
 
 	let props = $props();
 

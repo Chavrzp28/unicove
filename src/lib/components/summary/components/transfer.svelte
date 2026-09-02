@@ -5,7 +5,7 @@
 	import AssetElement from '$lib/components/elements/asset.svelte';
 	import SuspiciousMemo from '$lib/components/elements/suspiciousmemo.svelte';
 	import { ArrowBigRight, NotebookText } from '@lucide/svelte';
-	import { Chip } from 'unicove-components';
+	import { Chip } from '@wharfkit/svelte-components';
 	import type { Snippet } from 'svelte';
 	import Row from './row.svelte';
 

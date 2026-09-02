@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Name } from '@wharfkit/antelope';
-	import { Chip } from 'unicove-components';
+	import { Chip } from '@wharfkit/svelte-components';
 
 	import AccountLink from '$lib/components/elements/account.svelte';
 	import type { BeneficiaryEntry } from './types';

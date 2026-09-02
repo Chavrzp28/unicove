@@ -3,7 +3,7 @@
 	import { Timer } from '@lucide/svelte';
 	import { getContext, onMount } from 'svelte';
 
-	import { Button, Card, Stack } from 'unicove-components';
+	import { Button, Card, Stack } from '@wharfkit/svelte-components';
 	import AccountLink from '$lib/components/elements/account.svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import { Types } from '$lib/wharf/contracts/system';

@@ -26,7 +26,7 @@ import type {
 } from './types';
 import type { AccountState } from '$lib/state/client/account.svelte';
 import type { UnicoveContext } from '$lib/state/client.svelte';
-import type { ExtendedSelectOption } from 'unicove-components';
+import type { ExtendedSelectOption } from '@wharfkit/svelte-components';
 
 interface PermissionManagerArgs {
 	account: AccountState;

@@ -2,8 +2,8 @@
 	import { getContext, onMount } from 'svelte';
 	import { page } from '$app/state';
 
-	import { Stack, Switcher } from 'unicove-components';
-	import { Button } from 'unicove-components';
+	import { Stack, Switcher } from '@wharfkit/svelte-components';
+	import { Button } from '@wharfkit/svelte-components';
 	import TransactSummary from '$lib/components/transact/summary.svelte';
 	import TransactError from '$lib/components/transact/error.svelte';
 

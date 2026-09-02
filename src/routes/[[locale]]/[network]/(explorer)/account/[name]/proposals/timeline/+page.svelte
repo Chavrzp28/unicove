@@ -2,7 +2,7 @@
 	import { getContext } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
-	import { Button, Stack } from 'unicove-components';
+	import { Button, Stack } from '@wharfkit/svelte-components';
 
 	import ActivityEvent from '../components/ActivityEvent.svelte';
 	import ActionTypeFilter from '../components/ActionTypeFilter.svelte';

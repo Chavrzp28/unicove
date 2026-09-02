@@ -1,5 +1,5 @@
 <script>
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import Progress from '$lib/components/progress.svelte';
 </script>
 

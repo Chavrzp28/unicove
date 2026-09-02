@@ -4,7 +4,7 @@
 	import DollarSign from '@lucide/svelte/icons/dollar-sign';
 	import LayersIcon from '@lucide/svelte/icons/layers';
 	import SendIcon from '@lucide/svelte/icons/send';
-	import { Button, Card } from 'unicove-components';
+	import { Button, Card } from '@wharfkit/svelte-components';
 
 	import AssetText from '$lib/components/elements/asset.svelte';
 	import type { MarketContext, UnicoveContext } from '$lib/state/client.svelte';

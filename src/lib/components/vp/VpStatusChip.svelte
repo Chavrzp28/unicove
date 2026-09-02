@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Chip } from 'unicove-components';
+	import { Chip } from '@wharfkit/svelte-components';
 	import type { VpStatus } from '$lib/vp/types';
 
 	interface Props {

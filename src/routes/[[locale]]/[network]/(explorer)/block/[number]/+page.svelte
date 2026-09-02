@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { MultiCard } from '$lib/components/layout';
-	import { Stack, Switcher, Table, TD, TH, TR } from 'unicove-components';
+	import { Stack, Switcher, Table, TD, TH, TR } from '@wharfkit/svelte-components';
 	import TransactionText from '$lib/components/elements/transaction.svelte';
 	import AccountText from '$lib/components/elements/account.svelte';
-	import { Button } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
 	import { ArrowLeftRight, ArrowRight, ArrowLeft } from '@lucide/svelte';
-	import { DD, DL, DLRow } from 'unicove-components';
+	import { DD, DL, DLRow } from '@wharfkit/svelte-components';
 	import { goto } from '$app/navigation';
 	import type { UnicoveContext } from '$lib/state/client.svelte.js';
 	import { getContext } from 'svelte';

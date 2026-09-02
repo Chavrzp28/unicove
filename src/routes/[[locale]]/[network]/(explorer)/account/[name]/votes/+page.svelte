@@ -2,7 +2,7 @@
 	import AccountText from '$lib/components/elements/account.svelte';
 	import VoteWeight from '$lib/components/elements/voteweight.svelte';
 	import { Float64 } from '@wharfkit/antelope';
-	import { Table, TD, TH, TR } from 'unicove-components';
+	import { Table, TD, TH, TR } from '@wharfkit/svelte-components';
 
 	const { data } = $props();
 </script>

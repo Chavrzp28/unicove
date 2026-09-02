@@ -3,7 +3,7 @@
 	import { page } from '$app/state';
 	import { getContext, onMount } from 'svelte';
 
-	import { Stack, AssetInput, Button, Label } from 'unicove-components';
+	import { Stack, AssetInput, Button, Label } from '@wharfkit/svelte-components';
 	import TransactSummary from '$lib/components/transact/summary.svelte';
 	import TransactError from '$lib/components/transact/error.svelte';
 	import AccountText from '$lib/components/elements/account.svelte';

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import TextBlock from './text-block.svelte';
-	import { Button } from 'unicove-components';
-	import { IconButton } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
+	import { IconButton } from '@wharfkit/svelte-components';
 	import type { Article } from '$lib/types/content';
 	import { ChevronLeft, ChevronRight, Circle } from '@lucide/svelte';
 

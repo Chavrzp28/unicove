@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Account from '$lib/components/elements/account.svelte';
 	import Contract from '$lib/components/elements/contract.svelte';
-	import { Card, Number, Table, TH, TR, TD } from 'unicove-components';
+	import { Card, Number, Table, TH, TR, TD } from '@wharfkit/svelte-components';
 
 	let { data } = $props();
 

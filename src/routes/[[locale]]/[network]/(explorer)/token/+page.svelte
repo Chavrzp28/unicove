@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { Stack, Table, TD, TH, TR } from 'unicove-components';
+	import { Stack, Table, TD, TH, TR } from '@wharfkit/svelte-components';
 
 	import AssetText from '$lib/components/elements/asset.svelte';
 	import About from '$lib/components/seo/about.svelte';

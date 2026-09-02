@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { Asset, Name, Serializer } from '@wharfkit/antelope';
-	import { NameInput } from 'unicove-components';
-	import { SymbolInput } from 'unicove-components';
+	import { NameInput } from '@wharfkit/svelte-components';
+	import { SymbolInput } from '@wharfkit/svelte-components';
 	import { TokenDefinition } from '$lib/types/token';
-	import { Button } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
 	import { onMount } from 'svelte';
-	import { Code } from 'unicove-components';
+	import { Code } from '@wharfkit/svelte-components';
 
 	const { data } = $props();
 

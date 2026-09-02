@@ -2,7 +2,7 @@
 	import type { AccountState } from '$lib/state/client/account.svelte';
 	import type { NetworkState } from '$lib/state/network.svelte';
 	import AssetText from '$lib/components/elements/asset.svelte';
-	import { Button } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
 	import { HelpCircle } from '@lucide/svelte';
 	import { Int64 } from '@wharfkit/session';
 	import type { UnicoveContext } from '$lib/state/client.svelte';

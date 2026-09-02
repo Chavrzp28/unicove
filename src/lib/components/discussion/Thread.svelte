@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import { Name } from '@wharfkit/antelope';
-	import { Button } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import { ThreadState } from '$lib/discussion/thread.svelte';
 	import { defaultPostTarget, shortLabel, type TargetDescriptor } from '$lib/discussion/targets';

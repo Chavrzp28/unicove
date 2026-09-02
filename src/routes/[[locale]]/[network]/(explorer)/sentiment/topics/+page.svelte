@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { Button, Card, Stack } from 'unicove-components';
+	import { Button, Card, Stack } from '@wharfkit/svelte-components';
 	import TopicCard from '$lib/components/sentiment/topicCard.svelte';
 	import TopicCardSkeleton from '$lib/components/sentiment/topicCardSkeleton.svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte';

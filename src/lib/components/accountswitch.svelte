@@ -21,8 +21,8 @@
 	import UserCheck from '@lucide/svelte/icons/user-check';
 	import UserPlus from '@lucide/svelte/icons/user-plus';
 	import Search from '@lucide/svelte/icons/search';
-	import { Button } from 'unicove-components';
-	import { TextInput } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
+	import { TextInput } from '@wharfkit/svelte-components';
 	import { Wallet } from '@lucide/svelte';
 	import { goto } from '$app/navigation';
 

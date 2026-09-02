@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Cluster, Stack } from 'unicove-components';
-	import { Button } from 'unicove-components';
-	import { IconButton } from 'unicove-components';
+	import { Cluster, Stack } from '@wharfkit/svelte-components';
+	import { Button } from '@wharfkit/svelte-components';
+	import { IconButton } from '@wharfkit/svelte-components';
 	import { User } from '@lucide/svelte';
 </script>
 

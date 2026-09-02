@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Card } from 'unicove-components';
+	import { Card } from '@wharfkit/svelte-components';
 
 	interface Props {
 		englishHref: string;

@@ -5,18 +5,18 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
 
-	import { DD, DL, DLRow } from 'unicove-components';
+	import { DD, DL, DLRow } from '@wharfkit/svelte-components';
 	import { preventDefault } from '$lib/utils';
-	import { Label } from 'unicove-components';
-	import { NameInput } from 'unicove-components';
-	import { PublicKeyInput } from 'unicove-components';
-	import { NumberInput } from 'unicove-components';
+	import { Label } from '@wharfkit/svelte-components';
+	import { NameInput } from '@wharfkit/svelte-components';
+	import { PublicKeyInput } from '@wharfkit/svelte-components';
+	import { NumberInput } from '@wharfkit/svelte-components';
 	import { SingleCard } from '$lib/components/layout';
-	import { Stack } from 'unicove-components';
-	import { Button } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
+	import { Button } from '@wharfkit/svelte-components';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
-	import { Code } from 'unicove-components';
-	import { Checkbox } from 'unicove-components';
+	import { Code } from '@wharfkit/svelte-components';
+	import { Checkbox } from '@wharfkit/svelte-components';
 	import { browser } from '$app/environment';
 	import AccountText from '$lib/components/elements/account.svelte';
 	import { PlaceholderAuth } from '@wharfkit/session';

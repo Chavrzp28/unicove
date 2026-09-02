@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import TransactionHeader from '$lib/components/transaction/header.svelte';
 
 	const { data } = $props();

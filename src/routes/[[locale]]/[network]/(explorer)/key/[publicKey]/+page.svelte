@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Card, Stack } from 'unicove-components';
+	import { Card, Stack } from '@wharfkit/svelte-components';
 	import Account from '$lib/components/elements/account.svelte';
 	import Key from '@lucide/svelte/icons/key-round';
-	import { CopyButton } from 'unicove-components';
+	import { CopyButton } from '@wharfkit/svelte-components';
 
 	let { data } = $props();
 

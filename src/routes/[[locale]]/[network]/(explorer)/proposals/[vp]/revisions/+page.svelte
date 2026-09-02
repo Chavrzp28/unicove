@@ -1,6 +1,6 @@
 <!-- .../proposals/[vp]/revisions/+page.svelte -->
 <script lang="ts">
-	import { Card, Stack } from 'unicove-components';
+	import { Card, Stack } from '@wharfkit/svelte-components';
 	import { page } from '$app/state';
 	import { formatDateTime } from '$lib/utils/intl';
 	import { parseVpDate } from '$lib/vp/dates';

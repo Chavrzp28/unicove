@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { Button, Stack } from 'unicove-components';
+	import { Button, Stack } from '@wharfkit/svelte-components';
 
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 

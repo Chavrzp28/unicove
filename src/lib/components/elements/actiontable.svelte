@@ -3,7 +3,7 @@
 	import { ChevronsUpDownIcon } from '@lucide/svelte';
 
 	import { getActionSummaryComponent } from '$lib/components/summary/index.js';
-	import { Card } from 'unicove-components';
+	import { Card } from '@wharfkit/svelte-components';
 	import Transaction from '$lib/components/elements/transaction.svelte';
 	import Contract from '$lib/components/elements/contract.svelte';
 	import GenericSummary from '$lib/components/summary/generic.svelte';

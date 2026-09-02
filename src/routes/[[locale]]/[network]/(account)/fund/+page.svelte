@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { Card } from 'unicove-components';
+	import { Card } from '@wharfkit/svelte-components';
 	import binanceLogo from '$lib/assets/exchanges/binance.webp?enhanced';
 	import krakenLogo from '$lib/assets/exchanges/kraken.webp?enhanced';
 	import okxLogo from '$lib/assets/exchanges/okx.webp?enhanced';
@@ -9,11 +9,11 @@
 	import upbitLogo from '$lib/assets/exchanges/upbit.webp?enhanced';
 	import kucoinLogo from '$lib/assets/exchanges/kucoin.webp?enhanced';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
-	import { Button } from 'unicove-components';
-	import { DL, DLRow, DD } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
+	import { DL, DLRow, DD } from '@wharfkit/svelte-components';
 	import coinbaseLogo from '$lib/assets/exchanges/coinbase.svg';
-	import { Stack } from 'unicove-components';
-	import { Cluster } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
+	import { Cluster } from '@wharfkit/svelte-components';
 	import { CoinbaseOnRamp } from './onramps/coinbase.svelte';
 
 	const context = getContext<UnicoveContext>('state');

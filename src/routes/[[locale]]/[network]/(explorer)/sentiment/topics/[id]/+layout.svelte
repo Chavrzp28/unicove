@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import PillGroup from '$lib/components/navigation/pillgroup.svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import { DiscussionSummary } from '$lib/discussion/summary.svelte';

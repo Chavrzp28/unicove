@@ -1,6 +1,12 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { Stack, NameInput, NameValidationError, Button, Label } from 'unicove-components';
+	import {
+		Stack,
+		NameInput,
+		NameValidationError,
+		Button,
+		Label
+	} from '@wharfkit/svelte-components';
 	import TransactSummary from '$lib/components/transact/summary.svelte';
 	import TransactError from '$lib/components/transact/error.svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
@@ -11,7 +17,7 @@
 
 	let manager: CreateTopicManager = $state(new CreateTopicManager());
 	let ready = $derived(manager.canSubmit && !!context.wharf.session && !context.wharf.transacting);
-	let nameError: import('unicove-components').NameValidationError | undefined = $state();
+	let nameError: import('@wharfkit/svelte-components').NameValidationError | undefined = $state();
 	let nameTouched = $state(false);
 	const nameErrorMessage = $derived.by(() => {
 		if (!nameTouched || !nameError) return '';

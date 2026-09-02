@@ -1,6 +1,6 @@
 <script>
-	import { Stack } from 'unicove-components';
-	import { Code } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
+	import { Code } from '@wharfkit/svelte-components';
 </script>
 
 <Stack id="code">

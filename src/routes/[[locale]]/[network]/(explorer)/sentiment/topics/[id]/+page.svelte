@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Checksum256 } from '@wharfkit/antelope';
 	import { getContext, onMount } from 'svelte';
-	import { Card, Button, Stack } from 'unicove-components';
+	import { Card, Button, Stack } from '@wharfkit/svelte-components';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import VoteButtons from '$lib/components/sentiment/voteButtons.svelte';
 	import TransactForm from '$lib/components/transact/form.svelte';

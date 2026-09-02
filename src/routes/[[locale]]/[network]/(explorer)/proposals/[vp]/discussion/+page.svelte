@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import { page } from '$app/state';
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import { SvelteMap } from 'svelte/reactivity';
 	import Thread from '$lib/components/discussion/Thread.svelte';
 	import TargetNav from '$lib/components/discussion/TargetNav.svelte';

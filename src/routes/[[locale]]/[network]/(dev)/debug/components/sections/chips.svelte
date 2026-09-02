@@ -1,7 +1,7 @@
 <script>
-	import { Chip } from 'unicove-components';
+	import { Chip } from '@wharfkit/svelte-components';
 
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 </script>
 
 <Stack id="chips">

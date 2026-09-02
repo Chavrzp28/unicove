@@ -2,7 +2,7 @@
 	import { getContext } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
-	import { Button, Card, Stack } from 'unicove-components';
+	import { Button, Card, Stack } from '@wharfkit/svelte-components';
 
 	import ProposalCard from './components/ProposalCard.svelte';
 	import StatusFilter from './components/StatusFilter.svelte';

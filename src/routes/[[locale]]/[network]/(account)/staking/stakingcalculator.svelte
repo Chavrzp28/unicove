@@ -4,8 +4,8 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { Asset } from '@wharfkit/antelope';
 
-	import { Card, Stack, Table, TD, TR } from 'unicove-components';
-	import { AssetInput } from 'unicove-components';
+	import { Card, Stack, Table, TD, TR } from '@wharfkit/svelte-components';
+	import { AssetInput } from '@wharfkit/svelte-components';
 	import AssetText from '$lib/components/elements/asset.svelte';
 	import type { NetworkState } from '$lib/state/network.svelte';
 

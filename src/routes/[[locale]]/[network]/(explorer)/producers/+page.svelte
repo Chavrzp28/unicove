@@ -12,7 +12,7 @@
 		cn,
 		Cluster,
 		IconButton
-	} from 'unicove-components';
+	} from '@wharfkit/svelte-components';
 	import Checkbox from './components/Checkbox.svelte';
 	import AccountLink from '$lib/components/elements/account.svelte';
 	import TransactForm from '$lib/components/transact/form.svelte';

@@ -3,7 +3,7 @@
 	import { PlaceholderAuth, PlaceholderName, SigningRequest } from '@wharfkit/session';
 	import { getContext } from 'svelte';
 	import { Debounced, FiniteStateMachine } from 'runed';
-	import zlib from 'pako';
+	import * as zlib from 'pako';
 
 	import { preventDefault } from '$lib/utils';
 	import MetaMaskRequired from '$lib/components/wallets/metamask/required.svelte';
@@ -12,7 +12,7 @@
 	import { requestPublicKeys, requestSnap } from '$lib/metamask-snap';
 	import { goto } from '$app/navigation';
 	import { Types as VaultaTypes } from '$lib/wharf/contracts/core.vaulta';
-	import { Label, NameInput, Button, Code, Stack } from 'unicove-components';
+	import { Label, NameInput, Button, Code, Stack } from '@wharfkit/svelte-components';
 
 	const context = getContext<UnicoveContext>('state');
 

@@ -8,7 +8,7 @@
 	import ActionCard from '$lib/components/elements/action.svelte';
 	import AccountElement from '$lib/components/elements/account.svelte';
 	import { getActionSummaryComponent } from '$lib/components/summary';
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 
 	type Props = ActionSummaryProps;
 

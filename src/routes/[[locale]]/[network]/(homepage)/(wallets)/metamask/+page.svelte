@@ -1,18 +1,18 @@
 <script lang="ts">
 	import { getContext, onMount } from 'svelte';
 
-	import { Button } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
 	import Box from '$lib/components/layout/box/box.svelte';
 	import { requestPublicKeys, requestSnap } from '$lib/metamask-snap';
 	import MetaMaskInstall from '$lib/components/wallets/metamask/install.svelte';
 	import MetaMaskSnap from '$lib/components/wallets/metamask/snap.svelte';
 	import Metamask from '$lib/assets/metamask.svg';
 	import type { UnicoveContext } from '$lib/state/client.svelte.js';
-	import { Cluster, Stack } from 'unicove-components';
-	import { DD, DL, DLRow } from 'unicove-components';
-	import { TextInput } from 'unicove-components';
-	import { CopyButton } from 'unicove-components';
-	import { Code } from 'unicove-components';
+	import { Cluster, Stack } from '@wharfkit/svelte-components';
+	import { DD, DL, DLRow } from '@wharfkit/svelte-components';
+	import { TextInput } from '@wharfkit/svelte-components';
+	import { CopyButton } from '@wharfkit/svelte-components';
+	import { Code } from '@wharfkit/svelte-components';
 	import { goto } from '$app/navigation';
 
 	const { data } = $props();

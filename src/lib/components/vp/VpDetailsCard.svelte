@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Card, DD, DL, DLRow } from 'unicove-components';
+	import { Card, DD, DL, DLRow } from '@wharfkit/svelte-components';
 	import { page } from '$app/state';
 	import { formatDateTime } from '$lib/utils/intl';
 	import { parseVpDate } from '$lib/vp/dates';

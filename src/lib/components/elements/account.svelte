@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Account, type AccountProps } from 'unicove-components';
+	import { Account, type AccountProps } from '@wharfkit/svelte-components';
 	import { getContext } from 'svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 

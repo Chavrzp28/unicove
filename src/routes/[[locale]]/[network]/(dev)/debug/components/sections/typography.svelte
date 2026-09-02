@@ -1,5 +1,5 @@
 <script>
-	import { Cluster, Stack } from 'unicove-components';
+	import { Cluster, Stack } from '@wharfkit/svelte-components';
 </script>
 
 <Stack id="typography">

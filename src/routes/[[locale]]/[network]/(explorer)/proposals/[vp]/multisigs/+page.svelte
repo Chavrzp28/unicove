@@ -1,7 +1,7 @@
 <!-- .../proposals/[vp]/multisigs/+page.svelte -->
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { Stack } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
 	import { page } from '$app/state';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import { vpMsigSteps } from '$lib/vp/onchain';

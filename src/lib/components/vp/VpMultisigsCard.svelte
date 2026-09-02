@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { Card } from 'unicove-components';
+	import { Card } from '@wharfkit/svelte-components';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import ApprovalProgress from '$lib/components/msig/approvalprogress.svelte';
 	import { parseMsigApprovals, vpMsigSteps } from '$lib/vp/onchain';

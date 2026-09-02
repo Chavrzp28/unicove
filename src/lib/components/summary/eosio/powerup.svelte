@@ -3,7 +3,7 @@
 	import type { ActionSummaryProps } from '$lib/types/transaction';
 	import AccountElement from '$lib/components/elements/account.svelte';
 	import Row from '../components/row.svelte';
-	import { Chip } from 'unicove-components';
+	import { Chip } from '@wharfkit/svelte-components';
 	import { Int64, Name } from '@wharfkit/antelope';
 	import { ZeroUnits } from '$lib/types/token';
 

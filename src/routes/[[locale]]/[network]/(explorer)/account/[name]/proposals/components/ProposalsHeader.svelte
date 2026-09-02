@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext, type Snippet } from 'svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
-	import { Button, Stack } from 'unicove-components';
+	import { Button, Stack } from '@wharfkit/svelte-components';
 	import { page } from '$app/state';
 
 	const context = getContext<UnicoveContext>('state');

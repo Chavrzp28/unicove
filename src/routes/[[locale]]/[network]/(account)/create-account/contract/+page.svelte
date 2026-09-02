@@ -6,15 +6,15 @@
 	import { page } from '$app/state';
 
 	import { preventDefault } from '$lib/utils';
-	import { Label } from 'unicove-components';
-	import { NameInput } from 'unicove-components';
-	import { PublicKeyInput } from 'unicove-components';
+	import { Label } from '@wharfkit/svelte-components';
+	import { NameInput } from '@wharfkit/svelte-components';
+	import { PublicKeyInput } from '@wharfkit/svelte-components';
 	import { SingleCard } from '$lib/components/layout';
-	import { Stack } from 'unicove-components';
-	import { Button } from 'unicove-components';
-	import { CopyButton } from 'unicove-components';
+	import { Stack } from '@wharfkit/svelte-components';
+	import { Button } from '@wharfkit/svelte-components';
+	import { CopyButton } from '@wharfkit/svelte-components';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
-	import { Code } from 'unicove-components';
+	import { Code } from '@wharfkit/svelte-components';
 	import AccountText from '$lib/components/elements/account.svelte';
 	import { buildCreationMemo, isValidCreationName } from '$lib/utils/create/memo';
 	import { CreationWatcher } from './watcher.svelte';

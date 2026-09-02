@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { NetworkState } from '$lib/state/network.svelte';
-	import { Button } from 'unicove-components';
+	import { Button } from '@wharfkit/svelte-components';
 
 	import { Chains } from '@wharfkit/common';
 	import type { UnicoveContext } from '$lib/state/client.svelte';

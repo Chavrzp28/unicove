@@ -3,13 +3,13 @@
 	import { type TransactResult } from '@wharfkit/session';
 	import { getContext } from 'svelte';
 
-	import { Stack, Table, TD, TR } from 'unicove-components';
-	import { NumberInput } from 'unicove-components';
-	import { Label } from 'unicove-components';
-	import { NameInput } from 'unicove-components';
+	import { Stack, Table, TD, TR } from '@wharfkit/svelte-components';
+	import { NumberInput } from '@wharfkit/svelte-components';
+	import { Label } from '@wharfkit/svelte-components';
+	import { NameInput } from '@wharfkit/svelte-components';
 	import AssetText from '$lib/components/elements/asset.svelte';
-	import { Checkbox } from 'unicove-components';
-	import { Button } from 'unicove-components';
+	import { Checkbox } from '@wharfkit/svelte-components';
+	import { Button } from '@wharfkit/svelte-components';
 	import TransactSummary from '$lib/components/transact/summary.svelte';
 	import TransactError from '$lib/components/transact/error.svelte';
 	import CpuAndNetResource from '$lib/components/elements/cpunetresource.svelte';
@@ -21,7 +21,7 @@
 	import { preventDefault } from '$lib/utils';
 	import { RentState } from './state.svelte';
 	import { type RentType } from './utils';
-	import { DD, DL, DLRow } from 'unicove-components';
+	import { DD, DL, DLRow } from '@wharfkit/svelte-components';
 
 	const context = getContext<UnicoveContext>('state');
 
