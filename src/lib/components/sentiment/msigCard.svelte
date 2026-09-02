@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { Card } from 'unicove-components';
+	import { Card } from '@wharfkit/svelte-components';
 	import { getContext } from 'svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import type { MsigWithStats } from '$lib/types/sentiment';
 	import SentimentMeter from './SentimentMeter.svelte';
 	import AssetText from '$lib/components/elements/asset.svelte';
-	import AccountElement from '$lib/components/elements/account.svelte';
 
 	interface Props {
 		msigData: MsigWithStats;
@@ -32,7 +31,7 @@
 					{msigData.msig.proposalName}
 				</h3>
 				<p class="text-body-sm text-on-surface-variant">
-					by <AccountElement name={msigData.msig.proposer} />
+					by <span class="font-mono">{msigData.msig.proposer}</span>
 				</p>
 			</div>
 		</div>
