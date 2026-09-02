@@ -33,15 +33,12 @@
 					);
 				} else if ('error' in parsedRamResponse && parsedRamResponse.error) {
 					throw new Error(String(parsedRamResponse.error));
-				} else {
-					throw new Error('Error fetching RAM prices');
 				}
 			} catch (e) {
-				throw new Error(String(e));
+				console.warn('RAM price history unavailable', e);
 			}
-		} else {
-			return [];
 		}
+		return [];
 	};
 
 	let systemtoken = Asset.Symbol.from(network.config.systemtoken.symbol);
