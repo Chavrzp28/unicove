@@ -12,7 +12,7 @@ import {
 	type AccountCreationPlugin,
 	type CreateAccountOptions,
 	type LoginOptions,
-	type RestoreArgs,
+	type PartialSerializedSession,
 	type SerializedSession,
 	type TransactArgs,
 	type TransactOptions,
@@ -179,7 +179,7 @@ export class WharfState {
 		}
 	}
 
-	public async restore(args?: RestoreArgs, options?: LoginOptions) {
+	public async restore(args?: PartialSerializedSession, options?: LoginOptions) {
 		if (!this.sessionKit) {
 			throw new Error('User not initialized');
 		}
@@ -192,7 +192,7 @@ export class WharfState {
 		return session;
 	}
 
-	public async switch(serialized: RestoreArgs): Promise<Session> {
+	public async switch(serialized: PartialSerializedSession): Promise<Session> {
 		const session = await this.restore(serialized);
 		if (!session) {
 			throw new Error(`Failed to switch session to ${JSON.stringify(serialized)}`);
