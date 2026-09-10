@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 import { vpMsigSteps } from './onchain';
-import { vpApplyOwnVote, vpProposalTopicRows, vpStepHasPoll } from './sentiment';
+import { vpProposalTopicRows, vpStepHasPoll } from './sentiment';
 import type { VpSummary } from './types';
 
 function summary(overrides: Partial<VpSummary> = {}): VpSummary {
@@ -76,51 +76,5 @@ describe('vpStepHasPoll', () => {
 			})
 		);
 		expect(steps.map(vpStepHasPoll)).toEqual([true, false]);
-	});
-});
-
-describe('vpApplyOwnVote', () => {
-	const base = { totalVotes: 3, totalSupportWeight: 300, totalOppositionWeight: 100 };
-
-	test('casting a first support vote adds the weight and the count', () => {
-		expect(vpApplyOwnVote(base, null, 1, 100)).toEqual({
-			totalVotes: 4,
-			supportPercentage: 80,
-			oppositionPercentage: 20
-		});
-	});
-
-	test('removing your own support drops the weight and the count', () => {
-		expect(vpApplyOwnVote(base, 1, null, 100)).toEqual({
-			totalVotes: 2,
-			supportPercentage: (200 / 300) * 100,
-			oppositionPercentage: (100 / 300) * 100
-		});
-	});
-
-	test('switching sides moves the weight without changing the count', () => {
-		expect(vpApplyOwnVote(base, 1, 0, 100)).toEqual({
-			totalVotes: 3,
-			supportPercentage: 50,
-			oppositionPercentage: 50
-		});
-	});
-
-	test('removing the only vote reads as no votes rather than a negative tally', () => {
-		const only = { totalVotes: 1, totalSupportWeight: 100, totalOppositionWeight: 0 };
-		expect(vpApplyOwnVote(only, 1, null, 100)).toEqual({
-			totalVotes: 0,
-			supportPercentage: 0,
-			oppositionPercentage: 0
-		});
-	});
-
-	test('stale statistics missing your earlier vote clamp instead of going negative', () => {
-		const stale = { totalVotes: 0, totalSupportWeight: 0, totalOppositionWeight: 0 };
-		expect(vpApplyOwnVote(stale, 1, null, 100)).toEqual({
-			totalVotes: 0,
-			supportPercentage: 0,
-			oppositionPercentage: 0
-		});
 	});
 });

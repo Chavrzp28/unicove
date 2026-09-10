@@ -2,7 +2,7 @@ import { json, error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { getCacheHeaders } from '$lib/utils';
 
-export const GET: RequestHandler = async ({ fetch, locals: { network }, params }) => {
+export const GET: RequestHandler = async ({ fetch, locals: { network }, params, url }) => {
 	try {
 		const sentimentApiUrl = network.config.endpoints.sentiment;
 
@@ -11,9 +11,12 @@ export const GET: RequestHandler = async ({ fetch, locals: { network }, params }
 		}
 
 		const { proposer, proposal } = params;
-		const apiUrl = `${sentimentApiUrl}/v1/msigs/${proposer}/${proposal}`;
+		const apiUrl = new URL(`${sentimentApiUrl}/v1/msigs/${proposer}/${proposal}`);
+		url.searchParams.forEach((value, key) => {
+			apiUrl.searchParams.set(key, value);
+		});
 
-		const response = await fetch(apiUrl);
+		const response = await fetch(apiUrl.toString());
 
 		if (!response.ok) {
 			throw error(response.status, `Sentiment API error: ${response.statusText}`);

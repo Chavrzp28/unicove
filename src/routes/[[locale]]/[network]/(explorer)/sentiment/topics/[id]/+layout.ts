@@ -5,6 +5,7 @@ import { TopicSentimentState } from '../state.svelte';
 import { fetchVpIndex } from '$lib/vp/fetch';
 import { VP_BRANCH } from '$lib/vp/links';
 import { vpForTopic } from '$lib/vp/onchain';
+import { detailPath, fetchDetail, type DetailResponse } from '$lib/state/sentiment/poll';
 
 export const load: LayoutLoad = async ({ fetch, parent, params, url }) => {
 	const { network, locale } = await parent();
@@ -32,15 +33,20 @@ export const load: LayoutLoad = async ({ fetch, parent, params, url }) => {
 	}
 
 	const sentiment = new TopicSentimentState(network, locale);
+	const base = `/${locale}/${params.network}/api/sentiment`;
 
+	let topic: DetailResponse;
 	try {
-		await Promise.all([sentiment.loadTopic(topicId), sentiment.loadTopicVotes(topicId)]);
+		[topic] = await Promise.all([
+			fetchDetail(fetch, detailPath(base, { kind: 'topic', id: topicId }, {})),
+			sentiment.loadTopicVotes(topicId)
+		]);
 	} catch (e) {
 		console.error('Error loading topic:', e);
 		throw error(500, 'Failed to load topic data');
 	}
 
-	if (!sentiment.currentTopic) {
+	if (!topic.topic) {
 		throw error(404, {
 			message: 'Topic not found',
 			code: 'NOT_FOUND',
@@ -51,15 +57,16 @@ export const load: LayoutLoad = async ({ fetch, parent, params, url }) => {
 
 	return {
 		sentiment,
+		topic,
 		topicId,
 		backPath: `/${locale}/${params.network}/topics`,
-		title: sentiment.currentTopic.topic.id,
-		subtitle: `Last updated ${new Date(sentiment.currentTopic.topic.lastUpdated).toLocaleString()}`,
+		title: topic.topic.id,
+		subtitle: `Last updated ${new Date(topic.topic.lastUpdated).toLocaleString()}`,
 		pageMetaTags: {
-			title: [sentiment.currentTopic.topic.id, 'Sentiment', network.chain.name].join(' | '),
+			title: [topic.topic.id, 'Sentiment', network.chain.name].join(' | '),
 			description: [
 				'Overview and statistics for community sentiment on the',
-				sentiment.currentTopic.topic.id,
+				topic.topic.id,
 				'topic'
 			].join(' ')
 		}

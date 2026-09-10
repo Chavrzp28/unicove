@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getContext, onMount } from 'svelte';
+	import { getContext, onMount, untrack } from 'svelte';
 	import { Button, Card, Stack } from '@wharfkit/svelte-components';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import VoteButtons from '$lib/components/sentiment/voteButtons.svelte';
@@ -9,12 +9,16 @@
 	import DiscussionCard from '$lib/components/discussion/DiscussionCard.svelte';
 	import { msigDescriptor } from '$lib/discussion/targets';
 	import type { MsigSentimentState } from '$lib/state/sentiment/msig.svelte';
+	import { POLL_CONTEXT, type SentimentPollBox } from '$lib/state/sentiment/poll.svelte';
 	import type { MetricLens } from '$lib/types/sentiment';
 
 	const context = getContext<UnicoveContext>('state');
 	const { data } = $props();
 
 	const sentimentState = getContext<MsigSentimentState>('msig-sentiment');
+	const pollBox = getContext<SentimentPollBox>(POLL_CONTEXT);
+	const poll = $derived(pollBox.current);
+	const statistics = $derived(poll?.displayed ?? null);
 	const descriptor = $derived(
 		msigDescriptor(data.proposal.proposer, data.proposal.name, data.proposal.status)
 	);
@@ -27,8 +31,6 @@
 		v: 'V'
 	});
 
-	let userVote = $derived(sentimentState.currentUserVote?.vote_type ?? null);
-
 	function selectLens(lens: MetricLens) {
 		activeLens = lens;
 		sentimentState.loadMsigVotes(data.proposal.proposer, data.proposal.name, 1, 50, lens);
@@ -38,45 +40,36 @@
 		sentimentState.loadMsigVotes(data.proposal.proposer, data.proposal.name, 1, 50, activeLens);
 	});
 
-	async function handleVoteSuccess() {
-		await sentimentState.refreshMsigAndVotes(
-			data.proposal.proposer,
-			data.proposal.name,
-			false,
-			context.account?.name,
-			true,
-			activeLens
+	$effect(() => {
+		const version = poll?.version ?? 0;
+		if (version < 2 || poll?.expected) return;
+		untrack(() =>
+			sentimentState.loadMsigVotes(data.proposal.proposer, data.proposal.name, 1, 50, activeLens)
 		);
-	}
+	});
 </script>
 
 <article class="@container">
 	<Stack class="gap-8">
-		{#if sentimentState.error}
+		{#if poll?.loadError}
 			<div
 				class="bg-error/10 text-error border-error/30 flex items-center justify-between gap-2 rounded border px-4 py-2 text-sm"
 			>
-				<span>{sentimentState.error}</span>
-				<Button variant="text" onclick={() => (sentimentState.error = null)} class="text-error">
+				<span>{poll.loadError}</span>
+				<Button variant="text" onclick={() => poll?.dismissError()} class="text-error">
 					Dismiss
 				</Button>
 			</div>
 		{/if}
 
-		{#if sentimentState.currentMsig}
-			{@const statistics = sentimentState.currentMsig.statistics}
-
+		{#if statistics}
 			{#if context.account}
 				<Stack class="gap-3">
 					<h2 class="text-on-surface text-headline">Your Vote</h2>
 					<Card>
-						<VoteButtons
-							type="msig"
-							proposer={data.proposal.proposer}
-							proposalName={data.proposal.name}
-							currentVote={userVote}
-							onVoteSuccess={handleVoteSuccess}
-						/>
+						{#if poll}
+							<VoteButtons {poll} />
+						{/if}
 					</Card>
 				</Stack>
 			{/if}
@@ -115,16 +108,11 @@
 					href={context.urlPath(`/msig/${data.proposal.proposer}/${data.proposal.name}/discussion`)}
 				/>
 			{/if}
-		{:else if sentimentState.error}
+		{:else if poll?.loadError}
 			<Card>
 				<Stack class="items-start gap-2">
 					<p class="text-on-surface-variant">Sentiment results could not be loaded.</p>
-					<Button
-						variant="secondary"
-						onclick={() => sentimentState.loadMsig(data.proposal.proposer, data.proposal.name)}
-					>
-						Try Again
-					</Button>
+					<Button variant="secondary" onclick={() => poll?.refresh()}>Try Again</Button>
 				</Stack>
 			</Card>
 		{:else}

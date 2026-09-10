@@ -1,175 +1,50 @@
 <script lang="ts">
-	import type { NameType, Checksum256 } from '@wharfkit/antelope';
-	import { Name, Asset } from '@wharfkit/antelope';
+	import { Asset } from '@wharfkit/antelope';
 	import { getContext } from 'svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
+	import type { SentimentPollState } from '$lib/state/sentiment/poll.svelte';
 	import ThumbsUp from '@lucide/svelte/icons/thumbs-up';
 	import ThumbsDown from '@lucide/svelte/icons/thumbs-down';
 	import LoaderCircle from '@lucide/svelte/icons/loader-circle';
 	import AssetText from '$lib/components/elements/asset.svelte';
 	import { cn } from '$lib/utils';
 
-	type TopicProps = {
-		type: 'topic';
-		topicId: NameType;
-		currentVote?: number | null;
+	interface Props {
+		poll: SentimentPollState;
 		disabled?: boolean;
 		showVoter?: boolean;
 		compact?: boolean;
-		onVoteSuccess?: (id?: Checksum256, voteType?: number | null) => void;
-		onVoteFailure?: (error: string) => void;
-	};
+	}
 
-	type MsigProps = {
-		type: 'msig';
-		proposer: NameType;
-		proposalName: NameType;
-		currentVote?: number | null;
-		disabled?: boolean;
-		showVoter?: boolean;
-		compact?: boolean;
-		onVoteSuccess?: (id?: Checksum256, voteType?: number | null) => void;
-		onVoteFailure?: (error: string) => void;
-	};
-
-	type Props = TopicProps | MsigProps;
-
-	const props: Props = $props();
+	const {
+		poll,
+		disabled = false,
+		showVoter: showVoterProp = true,
+		compact = false
+	}: Props = $props();
 	const context = getContext<UnicoveContext>('state');
 
-	let voting = $state(false);
-	let error = $state<string | null>(null);
-
-	const disabled = $derived(props.disabled ?? false);
-	const compact = $derived(props.compact ?? false);
-	const showVoter = $derived(compact ? false : (props.showVoter ?? true));
-
-	async function handleVote(voteType: number) {
-		if (!context.wharf.session || !context.account) {
-			return;
-		}
-
-		voting = true;
-		error = null;
-
-		try {
-			const voter = context.account.name;
-			let action;
-
-			if (props.type === 'topic') {
-				const topic_id = Name.from(props.topicId);
-
-				action = context.network.contracts.sentiment.action('votetopic', {
-					voter,
-					topic_id,
-					vote_type: voteType
-				});
-			} else {
-				const proposerName = Name.from(props.proposer);
-				const proposal_name = Name.from(props.proposalName);
-
-				action = context.network.contracts.sentiment.action('votemsig', {
-					voter,
-					proposer: proposerName,
-					proposal_name,
-					vote_type: voteType
-				});
-			}
-
-			const result = await context.wharf.transact({ action });
-
-			if (props.onVoteSuccess) {
-				props.onVoteSuccess(result.resolved?.transaction.id, voteType);
-			}
-		} catch (e) {
-			error = e instanceof Error ? e.message : 'Failed to vote';
-			console.error('Vote error:', e);
-
-			if (props.onVoteFailure) {
-				props.onVoteFailure(error);
-			}
-		} finally {
-			voting = false;
-		}
-	}
-
-	async function handleRemoveVote() {
-		if (!context.wharf.session || !context.account) {
-			return;
-		}
-
-		voting = true;
-		error = null;
-
-		try {
-			const voter = context.account.name;
-			let action;
-
-			if (props.type === 'topic') {
-				const topic_id = Name.from(props.topicId);
-
-				action = context.network.contracts.sentiment.action('rmtopicvote', {
-					voter,
-					topic_id
-				});
-			} else {
-				const proposerName = Name.from(props.proposer);
-				const proposal_name = Name.from(props.proposalName);
-
-				action = context.network.contracts.sentiment.action('rmmsigvote', {
-					voter,
-					proposer: proposerName,
-					proposal_name
-				});
-			}
-
-			const result = await context.wharf.transact({ action });
-
-			if (props.onVoteSuccess) {
-				props.onVoteSuccess(result.resolved?.transaction.id, null);
-			}
-		} catch (e) {
-			error = e instanceof Error ? e.message : 'Failed to remove vote';
-			console.error('Remove vote error:', e);
-
-			if (props.onVoteFailure) {
-				props.onVoteFailure(error);
-			}
-		} finally {
-			voting = false;
-		}
-	}
-
-	let votingWeight = $state<Asset | null>(null);
-	$effect(() => {
-		const account = context.account;
-		if (!account || !showVoter) {
-			votingWeight = null;
-			return;
-		}
-		(async () => {
-			try {
-				const result = await context.network.contracts.sentiment.readonly('getmetric', {
-					voter: account.name
-				});
-				const units = Number(result.system_staked) + Number(result.system_liquid);
-				votingWeight = Asset.fromUnits(units, context.network.config.systemtoken.symbol);
-			} catch {
-				votingWeight = null;
-			}
-		})();
-	});
-
-	const pending = $derived(props.currentVote === undefined);
-	const vote = $derived(props.currentVote ?? null);
+	const showVoter = $derived(compact ? false : showVoterProp);
+	const voting = $derived(poll.signing);
+	const error = $derived(poll.error);
+	const pending = $derived(poll.ownVote === undefined);
+	const vote = $derived(poll.ownVote ?? null);
 	const supports = $derived(vote === 1);
 	const opposes = $derived(vote === 0);
 	const signedIn = $derived(Boolean(context.wharf.session && context.account));
 	const canAct = $derived(signedIn && !disabled && !voting);
+	const votingWeight = $derived(
+		poll.ownWeight
+			? Asset.fromUnits(poll.ownWeight.system.total, context.network.config.systemtoken.symbol)
+			: null
+	);
+	const captionKind = $derived(
+		poll.unreconciled && poll.expected ? (poll.expected.vote === null ? 'removed' : 'voted') : null
+	);
 
 	let pressed = $state<number | null>(null);
 
-	async function handleCompactClick(voteType: number) {
+	async function handleCompactClick(voteType: 0 | 1) {
 		if (!signedIn) {
 			context.wharf.login();
 			return;
@@ -177,9 +52,9 @@
 		pressed = voteType;
 		try {
 			if (vote === voteType) {
-				await handleRemoveVote();
+				await poll.remove();
 			} else {
-				await handleVote(voteType);
+				await poll.vote(voteType);
 			}
 		} finally {
 			pressed = null;
@@ -247,6 +122,15 @@
 			{#if error}
 				<p class="text-error w-40 text-right text-xs" role="alert">{error}</p>
 			{/if}
+			{#if captionKind === 'removed'}
+				<p class="text-muted w-40 text-right text-xs">
+					Your vote has been withdrawn and the results will update shortly.
+				</p>
+			{:else if captionKind === 'voted'}
+				<p class="text-muted w-40 text-right text-xs">
+					Your vote is on chain and will appear in the results shortly.
+				</p>
+			{/if}
 		</div>
 	{:else}
 		{#if error}
@@ -274,7 +158,7 @@
 		{:else}
 			<div class={frame}>
 				<button
-					onclick={() => !supports && handleVote(1)}
+					onclick={() => !supports && poll.vote(1)}
 					disabled={!canAct || supports}
 					class={cn(
 						choiceBase,
@@ -287,7 +171,7 @@
 					Support
 				</button>
 				<button
-					onclick={() => !opposes && handleVote(0)}
+					onclick={() => !opposes && poll.vote(0)}
 					disabled={!canAct || opposes}
 					class={cn(
 						choiceBase,
@@ -316,7 +200,7 @@
 				</p>
 				{#if vote !== null}
 					<button
-						onclick={handleRemoveVote}
+						onclick={() => poll.remove()}
 						disabled={!canAct}
 						class="text-primary cursor-pointer hover:underline"
 					>
@@ -324,6 +208,15 @@
 					</button>
 				{/if}
 			</div>
+			{#if captionKind === 'removed'}
+				<p class="text-muted text-sm">
+					Your vote has been withdrawn and the results will update shortly.
+				</p>
+			{:else if captionKind === 'voted'}
+				<p class="text-muted text-sm">
+					Your vote is on chain and will appear in the results shortly.
+				</p>
+			{/if}
 		{/if}
 	{/if}
 </div>

@@ -3,7 +3,9 @@
 	import { Card, Chip } from '@wharfkit/svelte-components';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import VpMsigStepResults from '$lib/components/vp/VpMsigStepResults.svelte';
-	import { parseMsigApprovals, type VpMsigApprovals, type VpMsigStep } from '$lib/vp/onchain';
+	import type { VpMsigStep } from '$lib/vp/onchain';
+	import { mountSentimentPoll } from '$lib/state/sentiment/poll.svelte';
+	import { vpStepHasPoll } from '$lib/vp/sentiment';
 
 	interface Props {
 		step: VpMsigStep;
@@ -14,9 +16,19 @@
 	const { step, basePath, last }: Props = $props();
 	const context = getContext<UnicoveContext>('state');
 
-	let approvals = $state<VpMsigApprovals | null>(null);
-	let approvalsLoaded = $state(false);
-	let unavailable = $state(false);
+	const hasPoll = $derived(vpStepHasPoll(step));
+	const pollBox = mountSentimentPoll(
+		context,
+		() =>
+			hasPoll && step.proposer && step.proposal
+				? { kind: 'msig', proposer: step.proposer, proposal: step.proposal }
+				: null,
+		{ live: () => step.live }
+	);
+	const poll = $derived(pollBox.current);
+	const approvals = $derived(poll?.approvals?.summary ?? null);
+	const approvalsLoaded = $derived(!hasPoll || (poll?.approvalsLoaded ?? false));
+	const unavailable = $derived(Boolean(poll?.approvalsLoaded && !poll.approvals));
 
 	const statusLabels: Record<string, string> = {
 		planned: 'Planned',
@@ -33,33 +45,6 @@
 		expired: 'bg-error-container text-on-error-container',
 		cancelled: 'bg-error-container text-on-error-container'
 	};
-
-	$effect(() => {
-		if (!step.proposer || !step.proposal) {
-			approvalsLoaded = true;
-			return;
-		}
-		const controller = new AbortController();
-		fetch(context.urlPath(`/api/msig/${step.proposer}/${step.proposal}`), {
-			signal: controller.signal
-		})
-			.then((response) => response.json())
-			.then((json) => {
-				const msig = parseMsigApprovals(json);
-				if (!msig) {
-					unavailable = true;
-					return;
-				}
-				approvals = msig;
-			})
-			.catch(() => {
-				unavailable = true;
-			})
-			.finally(() => {
-				approvalsLoaded = true;
-			});
-		return () => controller.abort();
-	});
 </script>
 
 <div class="relative pl-12" class:pb-6={!last}>
@@ -120,7 +105,7 @@
 			</div>
 		{/if}
 
-		<VpMsigStepResults {step} {approvals} {approvalsLoaded} />
+		<VpMsigStepResults {step} {poll} {approvals} {approvalsLoaded} />
 
 		{#if step.live && unavailable}
 			<p class="text-muted mt-3 text-sm">No live approval data on this network.</p>

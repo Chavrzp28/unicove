@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getContext, onMount } from 'svelte';
+	import { getContext } from 'svelte';
 
 	import { Button, Card, Chip, CopyButton, cn } from '@wharfkit/svelte-components';
 	import { DD, DL, DLRow } from '@wharfkit/svelte-components';
@@ -13,42 +13,22 @@
 	import SentimentMeter from '$lib/components/sentiment/SentimentMeter.svelte';
 	import DiscussionCard from '$lib/components/discussion/DiscussionCard.svelte';
 	import { percentString } from '$lib/utils';
-	import type { MsigSentimentState } from '$lib/state/sentiment/msig.svelte';
+	import { POLL_CONTEXT, type SentimentPollBox } from '$lib/state/sentiment/poll.svelte';
 
 	import { ApprovalManager } from './manager.svelte';
-	import { goto, invalidateAll } from '$app/navigation';
+	import { goto } from '$app/navigation';
 
 	let { data } = $props();
 
 	let context = getContext<UnicoveContext>('state');
 
-	const manager = $state(new ApprovalManager(context, data.proposal));
+	const pollBox = getContext<SentimentPollBox>(POLL_CONTEXT);
+	const poll = $derived(pollBox.current);
+	const sentimentStats = $derived(poll?.displayed ?? null);
+
+	const manager = $state(new ApprovalManager(context, data.proposal, pollBox));
 	$effect(() => {
 		manager.sync(data.network, context.wharf);
-	});
-
-	const sentimentState = getContext<MsigSentimentState>('msig-sentiment');
-	let userVote = $derived(sentimentState.currentUserVote?.vote_type ?? null);
-	const sentimentStats = $derived(sentimentState.currentMsig?.statistics ?? null);
-
-	async function handleVoteSuccess() {
-		sentimentState.loadMsig(data.proposal.proposer, data.proposal.name);
-		if (context.account) {
-			sentimentState.loadUserVote(context.account.name, data.proposal.proposer, data.proposal.name);
-		}
-	}
-
-	onMount(() => {
-		let interval: ReturnType<typeof setInterval> | undefined;
-		if (manager.isActive) {
-			interval = setInterval(() => {
-				invalidateAll();
-			}, 15000);
-		}
-
-		return () => {
-			if (interval) clearInterval(interval);
-		};
 	});
 
 	const top21 = data.producers.slice(0, 21);
@@ -246,6 +226,11 @@
 								onclick={() => manager.execute()}>Execute</Button
 							>
 						{/if}
+						{#if manager.unreconciledApproval}
+							<p class="text-muted text-sm">
+								Your approval change is on chain and the list will update shortly.
+							</p>
+						{/if}
 					</Stack>
 				</TransactForm>
 			</Card>
@@ -286,14 +271,8 @@
 								<div class="bg-surface-container h-4 w-24 rounded"></div>
 							</div>
 						{/if}
-						{#if context.account}
-							<VoteButtons
-								type="msig"
-								proposer={data.proposal.proposer}
-								proposalName={data.proposal.name}
-								currentVote={userVote}
-								onVoteSuccess={handleVoteSuccess}
-							/>
+						{#if context.account && poll}
+							<VoteButtons {poll} />
 						{/if}
 						{#if context.network.supports('discussion')}
 							<DiscussionCard

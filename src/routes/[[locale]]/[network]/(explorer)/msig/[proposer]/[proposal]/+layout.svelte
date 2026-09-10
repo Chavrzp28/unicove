@@ -2,8 +2,9 @@
 	import { Card, Stack } from '@wharfkit/svelte-components';
 	import PillGroup from '$lib/components/navigation/pillgroup.svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte.js';
-	import { getContext, onMount, setContext } from 'svelte';
+	import { getContext, setContext } from 'svelte';
 	import { MsigSentimentState } from '$lib/state/sentiment/msig.svelte';
+	import { mountSentimentPoll, POLL_CONTEXT } from '$lib/state/sentiment/poll.svelte';
 	import { DiscussionSummary } from '$lib/discussion/summary.svelte';
 	import { msigDescriptor } from '$lib/discussion/targets';
 
@@ -13,30 +14,22 @@
 	const sentimentState = $state(new MsigSentimentState(context.network, data.locale));
 	setContext('msig-sentiment', sentimentState);
 
+	const poll = mountSentimentPoll(context, () => ({
+		kind: 'msig',
+		proposer: data.proposal.proposer,
+		proposal: data.proposal.name
+	}));
+	setContext(POLL_CONTEXT, poll);
+
 	const discussion = new DiscussionSummary(fetch, context.urlPath('/api/msg'));
 	const descriptor = $derived(
 		msigDescriptor(data.proposal.proposer, data.proposal.name, data.proposal.status)
 	);
 	setContext('msig-discussion', discussion);
 
-	onMount(() => {
-		if (context.network.supports('sentiment')) {
-			sentimentState.loadMsig(data.proposal.proposer, data.proposal.name);
-		}
-	});
-
 	$effect(() => {
 		if (!context.network.supports('discussion')) return;
 		discussion.load([descriptor.tuple]);
-	});
-
-	$effect(() => {
-		if (!context.network.supports('sentiment')) return;
-		if (context.account) {
-			sentimentState.loadUserVote(context.account.name, data.proposal.proposer, data.proposal.name);
-		} else {
-			sentimentState.currentUserVote = null;
-		}
 	});
 
 	const tabOptions = $derived.by(() => {

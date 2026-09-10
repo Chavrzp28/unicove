@@ -1,13 +1,19 @@
 <script lang="ts">
-	import { getContext } from 'svelte';
+	import { getContext, setContext } from 'svelte';
 	import { Stack } from '@wharfkit/svelte-components';
 	import PillGroup from '$lib/components/navigation/pillgroup.svelte';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import { DiscussionSummary } from '$lib/discussion/summary.svelte';
 	import { topicDescriptor } from '$lib/discussion/targets';
+	import { mountSentimentPoll, POLL_CONTEXT } from '$lib/state/sentiment/poll.svelte';
 
 	const { children, data } = $props();
 	const context = getContext<UnicoveContext>('state');
+
+	const poll = mountSentimentPoll(context, () => ({ kind: 'topic', id: data.topicId }), {
+		initial: () => data.topic
+	});
+	setContext(POLL_CONTEXT, poll);
 
 	const discussion = new DiscussionSummary(fetch, context.urlPath('/api/msg'));
 	const contract = $derived(String(context.network.contracts.sentiment.account));

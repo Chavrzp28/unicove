@@ -6,12 +6,14 @@
 	import type { UnicoveContext } from '$lib/state/client.svelte.js';
 
 	import { ApprovalManager } from '../manager.svelte';
+	import { POLL_CONTEXT, type SentimentPollBox } from '$lib/state/sentiment/poll.svelte';
 
 	let { data } = $props();
 
 	let context = getContext<UnicoveContext>('state');
 
-	const manager = $state(new ApprovalManager(context, data.proposal));
+	const pollBox = getContext<SentimentPollBox>(POLL_CONTEXT);
+	const manager = $state(new ApprovalManager(context, data.proposal, pollBox));
 	$effect(() => {
 		manager.sync(data.network, context.wharf);
 	});

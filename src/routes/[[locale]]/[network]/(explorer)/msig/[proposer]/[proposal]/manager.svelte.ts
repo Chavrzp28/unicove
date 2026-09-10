@@ -8,6 +8,7 @@ import {
 	type Transaction
 } from '@wharfkit/antelope';
 import dayjs from 'dayjs';
+import { invalidateAll } from '$app/navigation';
 
 import type { UnicoveContext } from '$lib/state/client.svelte';
 import type { WharfState } from '$lib/state/client/wharf.svelte';
@@ -15,6 +16,8 @@ import type { NetworkState } from '$lib/state/network.svelte';
 import { bindingMsigAuthority, type MsigAuthority } from '$lib/wharf/msig/authority';
 import * as SystemContract from '$lib/wharf/contracts/system';
 import type { TransactResult } from '@wharfkit/session';
+import type { SentimentPollBox } from '$lib/state/sentiment/poll.svelte';
+import { applyExpectedApproval } from '$lib/state/sentiment/poll';
 
 type ProposalStatus = 'proposed' | 'executed' | 'cancelled' | 'expired';
 
@@ -62,10 +65,19 @@ export class ApprovalManager {
 	expiresIn = $derived.by(() => dayjs(this.expiration).fromNow());
 	isActive = $derived.by(() => this.proposal.status === 'proposed' && !this.expired);
 
-	approvals: Approvals = $state({
-		requested: [],
-		provided: []
+	private poll: SentimentPollBox;
+	private initial: Approvals;
+
+	private base = $derived.by<Approvals>(() => {
+		const snapshot = this.poll.current?.approvals;
+		return snapshot ? { requested: snapshot.requested, provided: snapshot.provided } : this.initial;
 	});
+	approvals = $derived.by<Approvals>(() => {
+		const expected = this.poll.current?.expectedApproval;
+		if (!expected) return this.base;
+		return applyExpectedApproval(this.base.provided, this.base.requested, expected);
+	});
+	unreconciledApproval = $derived.by(() => this.poll.current?.unreconciledApproval ?? false);
 	participants = $derived([...this.approvals.provided, ...this.approvals.requested]);
 	totalRequested = $derived(this.approvals.provided.length + this.approvals.requested.length);
 	totalApproved = $derived(this.approvals.provided.length);
@@ -114,12 +126,12 @@ export class ApprovalManager {
 		)
 	);
 
-	constructor(context: UnicoveContext, proposal: Proposal) {
+	constructor(context: UnicoveContext, proposal: Proposal, poll: SentimentPollBox) {
 		this.network = context.network;
 		this.wharf = context.wharf;
 		this.proposal = proposal;
-
-		this.approvals = {
+		this.poll = poll;
+		this.initial = {
 			requested: proposal.approvals.requested_approvals,
 			provided: proposal.approvals.provided_approvals
 		};
@@ -184,22 +196,6 @@ export class ApprovalManager {
 		return this.approvals.provided.some((a) => a.equals(account));
 	};
 
-	accountApprove = (account: PermissionLevel) => {
-		this.approvals.provided.push(account);
-		const index = this.approvals.requested.findIndex((a) => a.equals(account));
-		if (index >= 0) {
-			this.approvals.requested.splice(index, 1);
-		}
-	};
-
-	accountUnapprove = (account: PermissionLevel) => {
-		this.approvals.requested.push(account);
-		const index = this.approvals.provided.findIndex((a) => a.equals(account));
-		if (index >= 0) {
-			this.approvals.provided.splice(index, 1);
-		}
-	};
-
 	async approve() {
 		if (!this.wharf.session) {
 			throw new Error('Must be logged in to sign.');
@@ -220,7 +216,7 @@ export class ApprovalManager {
 			.transact({ action })
 			.then((result) => {
 				this.result = result;
-				this.accountApprove(permissionLevel);
+				this.poll.current?.signedApproval(String(permissionLevel), true);
 			})
 			.catch((error) => {
 				this.error = String(error);
@@ -246,7 +242,7 @@ export class ApprovalManager {
 			.transact({ action })
 			.then((result) => {
 				this.result = result;
-				this.accountUnapprove(permissionLevel);
+				this.poll.current?.signedApproval(String(permissionLevel), false);
 			})
 			.catch((error) => {
 				this.error = String(error);
@@ -270,6 +266,7 @@ export class ApprovalManager {
 			.transact({ action })
 			.then((result) => {
 				this.result = result;
+				void invalidateAll();
 			})
 			.catch((error) => {
 				this.error = String(error);

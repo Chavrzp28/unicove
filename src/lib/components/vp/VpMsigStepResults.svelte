@@ -1,133 +1,28 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { Name, type Checksum256 } from '@wharfkit/antelope';
 	import type { UnicoveContext } from '$lib/state/client.svelte';
 	import ApprovalProgress from '$lib/components/msig/approvalprogress.svelte';
 	import SentimentMeter from '$lib/components/sentiment/SentimentMeter.svelte';
 	import VoteButtons from '$lib/components/sentiment/voteButtons.svelte';
+	import type { SentimentPollState } from '$lib/state/sentiment/poll.svelte';
 	import { percentString } from '$lib/utils';
-	import { vpApplyOwnVote, vpStepHasPoll, type VpStepTally } from '$lib/vp/sentiment';
 	import type { VpMsigApprovals, VpMsigStep } from '$lib/vp/onchain';
-	import type { ApiResponse, MsigDetailData, TopicStatistics } from '$lib/types/sentiment';
 
 	interface Props {
 		step: VpMsigStep;
+		poll: SentimentPollState | null;
 		approvals: VpMsigApprovals | null;
-		approvalsLoaded?: boolean;
+		approvalsLoaded: boolean;
 	}
 
-	const { step, approvals, approvalsLoaded = true }: Props = $props();
+	const { step, poll, approvals, approvalsLoaded }: Props = $props();
 	const context = getContext<UnicoveContext>('state');
 
 	const locale = $derived(context.settings.data.locale);
 	const symbol = $derived(context.network.chain.systemToken?.symbol.name ?? null);
-	const hasPoll = $derived(context.network.supports('sentiment') && vpStepHasPoll(step));
-
-	let statistics = $state<TopicStatistics | null>(null);
-	let loaded = $state(false);
-	let currentVote = $state<number | null | undefined>(undefined);
-	let tally = $state<VpStepTally | null>(null);
-	let ownWeight = $state<number | null>(null);
-	let voteGeneration = 0;
-	let baseVote: number | null | undefined;
-
-	const loadStatistics = (signal?: AbortSignal) =>
-		fetch(context.urlPath(`/api/sentiment/msigs/${step.proposer}/${step.proposal}`), { signal })
-			.then((response) => response.json())
-			.then((result: ApiResponse<MsigDetailData>) => {
-				if (result.success && result.data) statistics = result.data.statistics;
-				loaded = true;
-			})
-			.catch((error) => {
-				if (error?.name === 'AbortError') return;
-				loaded = true;
-			});
-
-	$effect(() => {
-		if (!hasPoll) return;
-		statistics = null;
-		tally = null;
-		baseVote = undefined;
-		loaded = false;
-		const controller = new AbortController();
-		loadStatistics(controller.signal);
-		return () => controller.abort();
-	});
-
-	$effect(() => {
-		const account = context.account;
-		const generation = ++voteGeneration;
-		if (!hasPoll || !step.live || !account) {
-			currentVote = null;
-			return;
-		}
-		currentVote = undefined;
-		const loadVote = async () => {
-			try {
-				const result = await context.network.contracts.sentiment.readonly('getmsigvote', {
-					voter: account.name,
-					proposer: Name.from(step.proposer!),
-					proposal_name: Name.from(step.proposal!)
-				});
-				if (generation !== voteGeneration) return;
-				currentVote = result ? Number(result.vote_type) : null;
-			} catch {
-				if (generation !== voteGeneration) return;
-				currentVote = null;
-			}
-		};
-		loadVote();
-		return () => {
-			voteGeneration++;
-		};
-	});
-
-	$effect(() => {
-		const account = context.account;
-		if (!hasPoll || !step.live || !account) {
-			ownWeight = null;
-			return;
-		}
-		let active = true;
-		(async () => {
-			try {
-				const result = await context.network.contracts.sentiment.readonly('getmetric', {
-					voter: account.name
-				});
-				if (active) ownWeight = Number(result.system_staked) + Number(result.system_liquid);
-			} catch {
-				if (active) ownWeight = null;
-			}
-		})();
-		return () => {
-			active = false;
-		};
-	});
-
-	const displayed = $derived<VpStepTally | null>(
-		tally ??
-			(statistics
-				? {
-						totalVotes: statistics.totalVotes,
-						supportPercentage: statistics.supportPercentage,
-						oppositionPercentage: statistics.oppositionPercentage
-					}
-				: null)
-	);
-
-	const showHolders = $derived(hasPoll && (step.live || (displayed?.totalVotes ?? 0) > 0));
-
-	const onVoteSuccess = (_id?: Checksum256, voteType?: number | null) => {
-		const next = voteType ?? null;
-		if (baseVote === undefined) baseVote = currentVote ?? null;
-		voteGeneration++;
-		currentVote = next;
-		if (statistics && ownWeight !== null) {
-			tally = vpApplyOwnVote(statistics, baseVote, next, ownWeight);
-		} else {
-			loadStatistics();
-		}
-	};
+	const displayed = $derived(poll?.displayed ?? null);
+	const loaded = $derived(poll?.loaded ?? false);
+	const showHolders = $derived(Boolean(poll) && (step.live || (displayed?.totalVotes ?? 0) > 0));
 </script>
 
 {#if approvals || !approvalsLoaded || showHolders}
@@ -199,15 +94,8 @@
 						<div class="bg-surface-container h-4 w-40 animate-pulse rounded"></div>
 					{/if}
 				</div>
-				{#if step.live}
-					<VoteButtons
-						compact
-						type="msig"
-						proposer={step.proposer!}
-						proposalName={step.proposal!}
-						{currentVote}
-						{onVoteSuccess}
-					/>
+				{#if step.live && poll}
+					<VoteButtons compact {poll} />
 				{/if}
 			</div>
 		{/if}

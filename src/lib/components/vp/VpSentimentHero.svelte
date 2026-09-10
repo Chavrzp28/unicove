@@ -7,26 +7,26 @@
 	import SentimentMeter from '$lib/components/sentiment/SentimentMeter.svelte';
 	import VoteButtons from '$lib/components/sentiment/voteButtons.svelte';
 	import VpSentimentLens from '$lib/components/vp/VpSentimentLens.svelte';
+	import { mountSentimentPoll } from '$lib/state/sentiment/poll.svelte';
 	import { formatBytes } from '$lib/utils/bytes';
 	import { percentString } from '$lib/utils';
 	import { formatNumber } from '$lib/utils/intl';
 	import type { VpLens, VpProposalTopicRow } from '$lib/vp/sentiment';
-	import type { ApiResponse, TopicDetailData, TopicStatistics } from '$lib/types/sentiment';
 
 	interface Props {
 		row: VpProposalTopicRow;
 		question: string;
-		currentVote: number | null | undefined;
-		onVoted: (voteType: number | null) => void;
 		basePath: string;
 	}
 
-	const { row, question, currentVote, onVoted, basePath }: Props = $props();
+	const { row, question, basePath }: Props = $props();
 	const context = getContext<UnicoveContext>('state');
 	const locale = $derived(context.settings.data.locale);
 	const systemSymbol = $derived(context.network.chain.systemToken!.symbol);
 
-	let statistics = $state<TopicStatistics | null>(null);
+	const pollBox = mountSentimentPoll(context, () => ({ kind: 'topic', id: row.topic }));
+	const poll = $derived(pollBox.current);
+	const statistics = $derived(poll?.displayed ?? null);
 	let lens = $state<VpLens>('system');
 
 	const lensStats = $derived.by(() => {
@@ -44,17 +44,6 @@
 			supportPercentage: metric.supportPercentage,
 			oppositionPercentage: metric.oppositionPercentage
 		};
-	});
-
-	$effect(() => {
-		const controller = new AbortController();
-		fetch(context.urlPath(`/api/sentiment/topics/${row.topic}`), { signal: controller.signal })
-			.then((response) => response.json())
-			.then((result: ApiResponse<TopicDetailData>) => {
-				if (result.success && result.data) statistics = result.data.statistics;
-			})
-			.catch(() => {});
-		return () => controller.abort();
 	});
 </script>
 
@@ -117,12 +106,9 @@
 	{/if}
 
 	<div class="mt-4">
-		<VoteButtons
-			type="topic"
-			topicId={row.topic}
-			{currentVote}
-			onVoteSuccess={(_id, voteType) => onVoted(voteType ?? null)}
-		/>
+		{#if poll}
+			<VoteButtons {poll} />
+		{/if}
 	</div>
 
 	{#if context.network.supports('discussion')}
