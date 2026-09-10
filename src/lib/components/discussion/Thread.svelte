@@ -32,16 +32,8 @@
 	$effect(() => {
 		const next = new ThreadState(fetch, apiBase, tuples);
 		thread = next;
-		let cancelled = false;
-		let stop: (() => void) | undefined;
-		next.load().then(() => {
-			if (cancelled) return;
-			stop = next.start();
-		});
-		return () => {
-			cancelled = true;
-			stop?.();
-		};
+		next.load();
+		return () => next.stop();
 	});
 
 	const viewer = $derived(context.account ? String(context.account.name) : null);

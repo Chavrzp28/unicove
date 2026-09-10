@@ -10,8 +10,7 @@ import { tupleKey, type Tuple } from '$lib/msg/model';
 import { mergeMessages, newestSeq, pendingComment, type Comment } from '$lib/msg/reconcile';
 
 const PAGE = 50;
-const POLL_MS = 5000;
-const REFRESH_MS = 30000;
+const CONFIRM_MS = 2000;
 const PENDING_TIMEOUT_MS = 60000;
 
 export class ThreadState {
@@ -25,6 +24,7 @@ export class ThreadState {
 	private hasMoreByTuple = new Map<string, boolean>();
 	private busy = false;
 	private earlierInFlight = false;
+	private confirmTimer: ReturnType<typeof setInterval> | undefined;
 
 	constructor(
 		private fetchFn: typeof fetch,
@@ -107,23 +107,6 @@ export class ThreadState {
 		}
 	}
 
-	private async poll() {
-		if (this.busy) return;
-		const after = newestSeq(this.comments);
-		try {
-			const pages = await this.query((tuple) => ({ tuple, limit: PAGE, after }), false);
-			this.comments = mergeMessages(
-				this.comments,
-				pages.flatMap((p) => p.messages)
-			);
-			this.expirePending();
-			this.error = null;
-			this.ready = true;
-		} catch (e) {
-			this.fail(e);
-		}
-	}
-
 	async refresh() {
 		try {
 			const pages = await this.query(
@@ -143,26 +126,31 @@ export class ThreadState {
 		}
 	}
 
-	start(): () => void {
-		const poll = setInterval(() => {
-			if (!document.hidden) this.poll();
-		}, POLL_MS);
-		const refresh = setInterval(() => {
-			if (!document.hidden) this.refresh();
-		}, REFRESH_MS);
-		const onVisible = () => {
-			if (!document.hidden) this.refresh();
-		};
-		document.addEventListener('visibilitychange', onVisible);
-		return () => {
-			clearInterval(poll);
-			clearInterval(refresh);
-			document.removeEventListener('visibilitychange', onVisible);
-		};
-	}
-
 	addPending(sender: string, fields: PostFields, trxId: string) {
 		this.comments = [...this.comments, pendingComment(sender, fields, trxId, Date.now())];
+		this.confirmTimer ??= setInterval(() => this.confirm(), CONFIRM_MS);
+	}
+
+	stop() {
+		clearInterval(this.confirmTimer);
+		this.confirmTimer = undefined;
+	}
+
+	private async confirm() {
+		if (this.busy) return;
+		const after = newestSeq(this.comments);
+		try {
+			const pages = await this.query((tuple) => ({ tuple, limit: PAGE, after }), false);
+			this.comments = mergeMessages(
+				this.comments,
+				pages.flatMap((p) => p.messages)
+			);
+			this.error = null;
+		} catch (e) {
+			this.fail(e);
+		}
+		this.expirePending();
+		if (!this.comments.some((c) => c.pending?.phase === 'confirming')) this.stop();
 	}
 
 	markDeleted(seq: number) {
