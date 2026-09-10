@@ -23,6 +23,9 @@
 	const displayed = $derived(poll?.displayed ?? null);
 	const loaded = $derived(poll?.loaded ?? false);
 	const showHolders = $derived(Boolean(poll) && (step.live || (displayed?.totalVotes ?? 0) > 0));
+	const participantsPath = $derived(
+		context.urlPath(`/msig/${step.proposer}/${step.proposal}/sentiment#participants`)
+	);
 </script>
 
 {#if approvals || !approvalsLoaded || showHolders}
@@ -74,11 +77,13 @@
 							</span>
 							<span class="text-muted text-sm">
 								{#if symbol}support by {symbol} weight{:else}support{/if} ·
-								{#if displayed.totalVotes === 1}
-									1 vote
-								{:else}
-									{displayed.totalVotes} votes
-								{/if}
+								<a class="hover:text-primary underline underline-offset-2" href={participantsPath}>
+									{#if displayed.totalVotes === 1}
+										1 vote
+									{:else}
+										{displayed.totalVotes} votes
+									{/if}
+								</a>
 							</span>
 						</p>
 						<div class="mt-2">

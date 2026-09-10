@@ -29,6 +29,11 @@
 	const statistics = $derived(poll?.displayed ?? null);
 	let lens = $state<VpLens>('system');
 
+	const participantsPath = $derived(`${basePath}/sentiment/${row.topic}/participants`);
+	const showParticipants = $derived(
+		context.network.supports('sentiment') && (statistics?.totalVotes ?? 0) > 0
+	);
+
 	const lensStats = $derived.by(() => {
 		if (!statistics) return null;
 		if (lens === 'accounts') {
@@ -67,10 +72,19 @@
 						support by {systemSymbol.name} weight
 					{/if}
 					·
-					{#if statistics.totalVotes === 1}
-						1 vote
+					{#snippet voteCount()}
+						{#if statistics.totalVotes === 1}
+							1 vote
+						{:else}
+							{statistics.totalVotes} votes
+						{/if}
+					{/snippet}
+					{#if showParticipants}
+						<a class="hover:text-primary underline underline-offset-2" href={participantsPath}>
+							{@render voteCount()}
+						</a>
 					{:else}
-						{statistics.totalVotes} votes
+						{@render voteCount()}
 					{/if}
 				</p>
 				{#if lens !== 'accounts'}
@@ -111,14 +125,24 @@
 		{/if}
 	</div>
 
-	{#if context.network.supports('discussion')}
-		<div class="border-outline mt-4 border-t pt-3">
-			<a
-				class="text-primary text-sm font-medium hover:underline"
-				href="{basePath}/discussion?target=topic:{row.contract}:{row.topic}"
-			>
-				Read the discussion
-			</a>
+	{#if showParticipants || context.network.supports('discussion')}
+		<div class="border-outline mt-4 flex flex-wrap gap-x-2 gap-y-1 border-t pt-3">
+			{#if showParticipants}
+				<a class="text-primary text-sm font-medium hover:underline" href={participantsPath}>
+					See who voted
+				</a>
+			{/if}
+			{#if showParticipants && context.network.supports('discussion')}
+				<span class="text-muted text-sm" aria-hidden="true">·</span>
+			{/if}
+			{#if context.network.supports('discussion')}
+				<a
+					class="text-primary text-sm font-medium hover:underline"
+					href="{basePath}/discussion?target=topic:{row.contract}:{row.topic}"
+				>
+					Read the discussion
+				</a>
+			{/if}
 		</div>
 	{/if}
 </Card>

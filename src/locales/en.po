@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-21T07:48:36.657Z\n"
-"PO-Revision-Date: 2026-09-01T20:41:42.625Z\n"
+"PO-Revision-Date: 2026-09-10T21:44:01.983Z\n"
 "Last-Translator: \n"
 "Language: en\n"
 "Language-Team: \n"
@@ -1092,7 +1092,6 @@ msgstr "STAKE"
 #: src/routes/[[locale]]/[network]/(explorer)/producers/+page.svelte
 #: src/routes/[[locale]]/[network]/(explorer)/prompt/[payload]/+page.svelte
 #: src/routes/[[locale]]/[network]/(explorer)/prompt/[payload]/+page.svelte
-#: src/routes/[[locale]]/[network]/(explorer)/sentiment/topics/[id]/+page.svelte
 msgid "Back"
 msgstr "Back"
 
@@ -4866,16 +4865,15 @@ msgstr "About Sentiment Voting"
 msgid "Stake tokens"
 msgstr "Stake tokens"
 
-#: src/routes/[[locale]]/[network]/(explorer)/sentiment/topics/[id]/+page.svelte
-msgid "Updating..."
-msgstr "Updating..."
+#~ msgid "Updating..."
+#~ msgstr "Updating..."
 
 #: src/routes/[[locale]]/[network]/(explorer)/msig/[proposer]/[proposal]/sentiment/+page.svelte
 #: src/routes/[[locale]]/[network]/(explorer)/sentiment/topics/[id]/+page.svelte
 msgid "Dismiss"
 msgstr "Dismiss"
 
-#. placeholder {0}: new Date(sentiment.currentTopic.topic.lastUpdated).toLocaleString()
+#. placeholder {0}: new Date(topic.topic.lastUpdated).toLocaleString()
 #: src/routes/[[locale]]/[network]/(explorer)/sentiment/topics/[id]/+layout.ts
 msgid "Last updated {0}"
 msgstr "Last updated {0}"
@@ -4902,6 +4900,7 @@ msgstr "Opposing"
 #: src/lib/components/sentiment/MetricParticipants.svelte
 #: src/lib/components/sentiment/participantList.svelte
 #: src/lib/components/sentiment/participantList.svelte
+#: src/routes/[[locale]]/[network]/(explorer)/sentiment/topics/[id]/participants/+page.ts
 msgid "Participants"
 msgstr "Participants"
 
@@ -5395,7 +5394,6 @@ msgstr "Received {0} results for: \"{1}\""
 msgid "Discarding results for: \"{0}\" (query changed to \"{1}\")"
 msgstr "Discarding results for: \"{0}\" (query changed to \"{1}\")"
 
-#: src/lib/components/vp/VpMsigStepResults.svelte
 #: src/lib/state/search/manager.svelte.ts
 msgid "AbortError"
 msgstr "AbortError"
@@ -7016,6 +7014,7 @@ msgstr "Producer voting"
 #: src/routes/[[locale]]/[network]/(explorer)/proposals/+page.server.ts
 #: src/routes/[[locale]]/[network]/(explorer)/proposals/[vp]/+layout.server.ts
 #: src/routes/[[locale]]/[network]/(explorer)/proposals/[vp]/discussion/+page.ts
+#: src/routes/[[locale]]/[network]/(explorer)/proposals/[vp]/sentiment/[topic]/participants/+page.ts
 #: src/routes/[[locale]]/[network]/(explorer)/sentiment/topics/[id]/discussion/+page.ts
 msgid "Not found"
 msgstr "Not found"
@@ -8780,3 +8779,50 @@ msgstr "Block data is temporarily unavailable."
 #: src/routes/[[locale]]/[network]/(explorer)/block/[number]/+layout.ts
 msgid "UNAVAILABLE"
 msgstr "UNAVAILABLE"
+
+#: src/lib/components/vp/VpSentimentHero.svelte
+msgid "See who voted"
+msgstr "See who voted"
+
+#: src/lib/state/sentiment/poll.svelte.ts
+msgid "Failed to vote"
+msgstr "Failed to vote"
+
+#: src/lib/state/sentiment/poll.svelte.ts
+msgid "Failed to remove vote"
+msgstr "Failed to remove vote"
+
+#: src/lib/state/sentiment/poll.svelte.ts
+msgid "Failed to load sentiment"
+msgstr "Failed to load sentiment"
+
+#: src/lib/components/sentiment/voteButtons.svelte
+#: src/lib/components/sentiment/voteButtons.svelte
+msgid "Your vote has been withdrawn and the results will update shortly."
+msgstr "Your vote has been withdrawn and the results will update shortly."
+
+#: src/lib/components/sentiment/voteButtons.svelte
+#: src/lib/components/sentiment/voteButtons.svelte
+msgid "Your vote is on chain and will appear in the results shortly."
+msgstr "Your vote is on chain and will appear in the results shortly."
+
+#: src/routes/[[locale]]/[network]/(explorer)/msig/[proposer]/[proposal]/+page.svelte
+msgid "Your approval change is on chain and the list will update shortly."
+msgstr "Your approval change is on chain and the list will update shortly."
+
+#. placeholder {0}: data.topic.statistics.totalVotes
+#: src/routes/[[locale]]/[network]/(explorer)/sentiment/topics/[id]/+layout.svelte
+msgid "Participants ({0})"
+msgstr "Participants ({0})"
+
+#: src/routes/[[locale]]/[network]/(explorer)/sentiment/topics/[id]/participants/+page.svelte
+msgid "No votes on this topic yet."
+msgstr "No votes on this topic yet."
+
+#: src/routes/[[locale]]/[network]/(explorer)/proposals/[vp]/sentiment/[topic]/participants/+page.ts
+msgid "This proposal has no sentiment poll for that topic."
+msgstr "This proposal has no sentiment poll for that topic."
+
+#: src/routes/[[locale]]/[network]/(explorer)/proposals/[vp]/sentiment/[topic]/participants/+page.svelte
+msgid "No votes on this poll yet."
+msgstr "No votes on this poll yet."

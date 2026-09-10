@@ -47,7 +47,7 @@
 {/snippet}
 
 <Stack class="gap-3">
-	<h2 class="text-on-surface text-headline">Participants</h2>
+	<h2 id="participants" class="text-on-surface text-headline scroll-mt-24">Participants</h2>
 
 	<div class="grid gap-6 @xl:grid-cols-2 @4xl:grid-cols-3">
 		<StatCard label="Supporting" icon={ThumbsUp} supports={true}>

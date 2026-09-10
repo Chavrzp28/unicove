@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-21T07:48:36.663Z\n"
-"PO-Revision-Date: 2026-09-01T20:45:22.855Z\n"
+"PO-Revision-Date: 2026-09-10T21:44:02.044Z\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: \n"
@@ -1081,7 +1081,6 @@ msgstr "스테이크"
 #: src/routes/[[locale]]/[network]/(explorer)/producers/+page.svelte
 #: src/routes/[[locale]]/[network]/(explorer)/prompt/[payload]/+page.svelte
 #: src/routes/[[locale]]/[network]/(explorer)/prompt/[payload]/+page.svelte
-#: src/routes/[[locale]]/[network]/(explorer)/sentiment/topics/[id]/+page.svelte
 msgid "Back"
 msgstr "뒤로"
 
@@ -4766,7 +4765,7 @@ msgstr "지지"
 msgid "Opposing"
 msgstr "반대"
 
-#. placeholder {0}: new Date(sentiment.currentTopic.topic.lastUpdated).toLocaleString()
+#. placeholder {0}: new Date(topic.topic.lastUpdated).toLocaleString()
 #: src/routes/[[locale]]/[network]/(explorer)/sentiment/topics/[id]/+layout.ts
 msgid "Last updated {0}"
 msgstr "최종 업데이트 {0}"
@@ -4781,12 +4780,12 @@ msgstr "설명"
 #: src/lib/components/sentiment/MetricParticipants.svelte
 #: src/lib/components/sentiment/participantList.svelte
 #: src/lib/components/sentiment/participantList.svelte
+#: src/routes/[[locale]]/[network]/(explorer)/sentiment/topics/[id]/participants/+page.ts
 msgid "Participants"
 msgstr "참여자"
 
-#: src/routes/[[locale]]/[network]/(explorer)/sentiment/topics/[id]/+page.svelte
-msgid "Updating..."
-msgstr "업데이트 중..."
+#~ msgid "Updating..."
+#~ msgstr "업데이트 중..."
 
 #: src/routes/[[locale]]/[network]/(explorer)/msig/[proposer]/[proposal]/sentiment/+page.svelte
 #: src/routes/[[locale]]/[network]/(explorer)/sentiment/topics/[id]/+page.svelte
@@ -5261,7 +5260,6 @@ msgstr "\"{1}\"에 대한 결과 {0}개 수신"
 msgid "Discarding results for: \"{0}\" (query changed to \"{1}\")"
 msgstr "\"{0}\"에 대한 결과 삭제 중 (쿼리가 \"{1}\"으로 변경됨)"
 
-#: src/lib/components/vp/VpMsigStepResults.svelte
 #: src/lib/state/search/manager.svelte.ts
 msgid "AbortError"
 msgstr "AbortError"
@@ -6911,6 +6909,7 @@ msgstr "{0}이(가) 처음이신가요? <0>대신 계정 만들기</0>"
 #: src/routes/[[locale]]/[network]/(explorer)/proposals/+page.server.ts
 #: src/routes/[[locale]]/[network]/(explorer)/proposals/[vp]/+layout.server.ts
 #: src/routes/[[locale]]/[network]/(explorer)/proposals/[vp]/discussion/+page.ts
+#: src/routes/[[locale]]/[network]/(explorer)/proposals/[vp]/sentiment/[topic]/participants/+page.ts
 #: src/routes/[[locale]]/[network]/(explorer)/sentiment/topics/[id]/discussion/+page.ts
 msgid "Not found"
 msgstr "찾을 수 없습니다"
@@ -8621,3 +8620,50 @@ msgstr "블록 데이터를 일시적으로 사용할 수 없습니다."
 #: src/routes/[[locale]]/[network]/(explorer)/block/[number]/+layout.ts
 msgid "UNAVAILABLE"
 msgstr "사용할 수 없음"
+
+#: src/lib/components/vp/VpSentimentHero.svelte
+msgid "See who voted"
+msgstr ""
+
+#: src/lib/components/sentiment/voteButtons.svelte
+#: src/lib/components/sentiment/voteButtons.svelte
+msgid "Your vote has been withdrawn and the results will update shortly."
+msgstr ""
+
+#: src/lib/components/sentiment/voteButtons.svelte
+#: src/lib/components/sentiment/voteButtons.svelte
+msgid "Your vote is on chain and will appear in the results shortly."
+msgstr ""
+
+#: src/lib/state/sentiment/poll.svelte.ts
+msgid "Failed to vote"
+msgstr ""
+
+#: src/lib/state/sentiment/poll.svelte.ts
+msgid "Failed to remove vote"
+msgstr ""
+
+#: src/lib/state/sentiment/poll.svelte.ts
+msgid "Failed to load sentiment"
+msgstr ""
+
+#: src/routes/[[locale]]/[network]/(explorer)/msig/[proposer]/[proposal]/+page.svelte
+msgid "Your approval change is on chain and the list will update shortly."
+msgstr ""
+
+#. placeholder {0}: data.topic.statistics.totalVotes
+#: src/routes/[[locale]]/[network]/(explorer)/sentiment/topics/[id]/+layout.svelte
+msgid "Participants ({0})"
+msgstr ""
+
+#: src/routes/[[locale]]/[network]/(explorer)/sentiment/topics/[id]/participants/+page.svelte
+msgid "No votes on this topic yet."
+msgstr ""
+
+#: src/routes/[[locale]]/[network]/(explorer)/proposals/[vp]/sentiment/[topic]/participants/+page.ts
+msgid "This proposal has no sentiment poll for that topic."
+msgstr ""
+
+#: src/routes/[[locale]]/[network]/(explorer)/proposals/[vp]/sentiment/[topic]/participants/+page.svelte
+msgid "No votes on this poll yet."
+msgstr ""
